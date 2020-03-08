@@ -66,7 +66,7 @@ val userValidator: Validator<User> =
     } and property(User::lastName) {
         notBlank and maxLength(255)
     } and property(User::address) {
-        nullOr { Address.validator }
+        nullOr { addressValidator }
     }
 ```
 
