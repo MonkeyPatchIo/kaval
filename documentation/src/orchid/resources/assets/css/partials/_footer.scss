@@ -1,0 +1,22 @@
+// Footer
+body > footer {
+  grid-area: foot;
+  padding: .5em;
+  background: var(--dark);
+  color: var(--middle);
+  display: flex;
+  align-items: center;
+
+  a {
+    text-shadow: 1px 0 var(--darkest);
+  }
+
+  .orchid {
+    display: flex;
+    align-items: center;
+    img {
+      margin-left: .5em;
+      max-height: 2em;
+    }
+  }
+}

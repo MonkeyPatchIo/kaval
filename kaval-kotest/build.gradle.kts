@@ -65,7 +65,7 @@ tasks {
 publishing {
     repositories {
         maven {
-            name = "Maven Central"
+            name = "Sonatype_OSS"
             url = uri(
                 if (version.toString().endsWith("SNAPSHOT")) "https://oss.sonatype.org/content/repositories/snapshots"
                 else "https://oss.sonatype.org/service/local/staging/deploy/maven2"

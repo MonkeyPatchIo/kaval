@@ -1,0 +1,99 @@
+site:
+  about:
+    siteName: Kaval
+    siteDescription: Kaval is a validation DSL for your POJO.
+
+theme:
+  extraCss:
+    - 'assets/css/kaval.scss'
+  menu:
+    # Getting Started
+    - type: separator
+      title: Getting Started
+    - type: page
+      itemId: 'Samples'
+      icon: fas fa-code
+#    - type: page
+#      itemId: 'Dependencies'
+#    - type: page
+#      itemId: 'Playground'
+#      icon: fas fa-flask
+    # Modules
+    - type: separator
+      title: Modules
+    - type: page
+      itemId: 'Kaval Core'
+      icon: fas fa-atom
+    - type: page
+      itemId: 'Kaval Reflect'
+      icon: fas fa-puzzle-piece
+    - type: page
+      itemId: 'Kaval Kotest'
+      icon: fas fa-puzzle-piece
+    # Open Source
+    - type: separator
+      title: Open Source
+    - type: page
+      itemId: 'License'
+      icon: fas fa-file-contract
+    - type: page
+      itemId: 'Changelog'
+      icon: fas fa-history
+    - type: page
+      itemId: 'Contributors'
+      icon: fas fa-hands-helping
+    - type: link
+      title: Github
+      url: 'https://github.com/MonkeyPatchIo/kaval'
+      icon: 'fab fa-github'
+
+  metaComponents:
+    - type: 'prism'
+      theme: 'tomorrow'
+      languages:
+        - 'clike'
+        - 'kotlin'
+
+#indices:
+#  includeFrom:
+#    - 'wiki'
+#    - 'pages'
+#  excludeFrom:
+#    - 'javadoc'
+
+services:
+  publications:
+    stages:
+    - type: githubPages
+      branch: gh-pages
+      username: MonkeyPatchIo
+      repo: kaval
+
+allPages:
+  metaComponents:
+    - type: 'kotlinPlayground'
+      selector: "pre code[class='language-run-kotlin']"
+
+#changelog:
+
+#kotlindoc:
+  # Uncomment `homePageOnly` line to temporarily disable Kotlin docs generation and only
+  #   generate module homepages. Dokka takes a few seconds to start up, which
+  #   makes rapid iteration a bit painful, so it may be helpful to disable it
+  #   when making changes to the site.
+#  homePageOnly: true
+#  homePagePermalink:   'modules/:module'
+#  sourcePagePermalink: ':moduleType/:module/:sourceDocPath'
+#  modules:
+#    - name: Kaval Core
+#      slug: kaval-core
+#      moduleGroup: 'core'
+#      sourceDirs: ../../../../kaval-core/src/commonMain/kotlin/
+#    - name: Kaval Reflect
+#      slug: kaval-reflect
+#      moduleGroup: 'extension'
+#      sourceDirs: ../../../../kaval-reflect/src/commonMain/kotlin/
+#    - name: Kaval Kotest
+#      slug: kaval-kotest
+#      moduleGroup: 'extension'
+#      sourceDirs: ../../../../kaval-kotest/src/jvmMain/kotlin/

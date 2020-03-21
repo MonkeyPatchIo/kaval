@@ -1,0 +1,59 @@
+// Header
+body > header {
+  grid-area: head;
+  padding: 1em .5em;
+  background: var(--primary);
+  color: var(--primaryText);
+
+  a:hover {
+    color: var(--primaryTextHover);
+  }
+}
+
+// Header Figure
+body > header > .logo {
+  margin: 2em;
+  figure {
+    margin: 0;
+    display: flex;
+    max-width: 10em;
+    align-items: center;
+
+    img {
+      width: 100%;
+      filter: drop-shadow(.125em .125em .5em black);
+    }
+
+    figcaption {
+      font-size: 2.5em;
+      text-shadow: 1px 0 black;
+    }
+  }
+}
+
+// Header Nav
+body > header > nav {
+  > div {
+    padding: .25em;
+    border-radius: .125em;
+    +div{
+      margin-top: .25em;
+    }
+  }
+
+  .separator {
+    background: var(--darker-2);
+  }
+
+  a {
+    padding-left: 1em;
+  }
+}
+
+// Header Version
+body > header > .version {
+  text-align: center;
+  a {
+    text-shadow: 1px 0 black;
+  }
+}

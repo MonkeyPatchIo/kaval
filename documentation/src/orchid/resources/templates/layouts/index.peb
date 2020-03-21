@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+{% head %}
+{% styles %}
+{% include 'includes/head' %}
+</head>
+
+<body>
+{% include 'includes/header' %}
+<main>
+    <div class="content">
+        {% page %}
+    </div>
+</main>
+{% include 'includes/footer' %}
+{% scripts %}
+</body>
+
+</html>

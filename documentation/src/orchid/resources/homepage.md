@@ -1,10 +1,9 @@
-# <img src="./documentation/src/orchid/resources/assets/logo/kaval.svg" alt="Kaval" width="50"> Kaval
+---
+title: 'Kaval'
+layout: 'homepage'
+---
 
-
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/monkeypatchio/kaval/CI)
-![GitHub](https://img.shields.io/github/license/monkeypatchio/kaval)
-[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
-[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+# Kaval
 
 This is a Kotlin multiplatform library to validate your model.
 
@@ -99,4 +98,3 @@ println(result)
 * [kaval-core](./kaval-core): the core, start here
 * [kaval-reflect](./kaval-reflect): add a validator using Kotlin reflection
 * [kaval-kotest](./kaval-kotest): add custom matchers for [kotest](https://github.com/kotest/kotest)
-* [some samples](./samples/src/main/kotlin)

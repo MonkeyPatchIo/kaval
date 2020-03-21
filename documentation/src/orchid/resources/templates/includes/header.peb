@@ -1,0 +1,41 @@
+<header>
+
+  <div class="logo">
+    <a href="/">
+      <figure class="image">
+        <img src="{{ 'assets/logo/kaval.svg' | asset }}" alt="Kaval logo">
+        <figcaption>{{site.about.siteName}}</figcaption>
+      </figure>
+    </a>
+  </div>
+
+  <nav class="menu">
+  {% for menuItem in theme.menu.getMenuItems(page) %}
+    <div class="{{ menuItem.type }}">
+      {% if (menuItem.type == 'separator') %}
+        {{ menuItem.title }}
+      {% elseif menuItem.hasChildren() %}
+        {% for child in menuItem.children  %}
+          <a href="{{ child.link }}">{{ child.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a href="{% if (menuItem.itemId) %}{{ link(menuItem.itemId) }}{% else %}{{ menuItem.url }}{% endif %}">
+          {% if menuItem.icon %}
+            <i class="{{menuItem.icon}}"></i>
+          {% else %}
+            <i class="fas fa-chevron-right"></i>
+          {% endif %}
+          {{ menuItem.title }}
+        </a>
+      {% endif %}
+    </div>
+  {% endfor %}
+  </nav>
+
+  <div class="flex-spacer"></div>
+
+  <div class="version">
+    Last version <a href="{{ link('Changelog') }}">{{ site.version }}</a>
+  </div>
+
+</header>

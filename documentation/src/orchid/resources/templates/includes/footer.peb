@@ -1,0 +1,9 @@
+<footer>
+
+  <div class="orchid">
+    Build with <a href="https://orchid.run"><img alt="Orchid" src="{{ 'assets/logo/orchid.svg' | asset }}"></a>
+  </div>
+  <div class="flex-spacer"></div>
+  <div class="love">We ❤️ Chocolatines</div>
+
+</footer>
