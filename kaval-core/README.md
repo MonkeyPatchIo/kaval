@@ -75,8 +75,8 @@ input| `v1 and v2` | `v1 andThen v2` | `v1 or v2`
 -----|----------|---------------|---------
 `""`|Valid|Valid|Valid
 `"abc"`|Valid|Valid|Valid
-`"A"`|Invalid: require matching '^[a-z]*$'|Invalid: require matching '^[a-z]*$'|Valid
-`"Abcef"`|Invalid:<br> - [length] require to be lower or equals to 3, got 5<br> - require matching '^[a-z]*$'|Invalid: [length] require to be lower or equals to 3, got 5|Invalid:<br> - [length] require to be lower or equals to 3, got 5<br> - require matching '^[a-z]*$'
+`"A"`|Invalid: requires matching '^[a-z]*$'|Invalid: requires matching '^[a-z]*$'|Valid
+`"Abcef"`|Invalid:<br> - [length] requires to be lower or equals to 3, got 5<br> - requires matching '^[a-z]*$'|Invalid: [length] requires to be lower or equals to 3, got 5|Invalid:<br> - [length] requires to be lower or equals to 3, got 5<br> - requires matching '^[a-z]*$'
 
 ## Provided validators
 

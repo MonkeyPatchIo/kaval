@@ -17,7 +17,7 @@ class CommonsSpec : DescribeSpec() {
             it("should reject foobar") {
                 val result = plopValidator.validate("foobar")
                 result should beInvalidWithReason(
-                    "require matching 'pl.*p'"
+                    "requires matching 'pl.*p'"
                 )
             }
 

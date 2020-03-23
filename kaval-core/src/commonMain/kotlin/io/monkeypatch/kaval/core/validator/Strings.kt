@@ -16,13 +16,13 @@ object Strings {
      * A validator to reject empty [String] (or [CharSequence])
      */
     val notEmpty: Validator<CharSequence> =
-        predicate(CharSequence::isNotEmpty) { "require to be not empty" }
+        predicate(CharSequence::isNotEmpty) { "requires to be not empty" }
 
     /**
      * A validator to reject blank [String] (or [CharSequence])
      */
     val notBlank: Validator<CharSequence> =
-        predicate(CharSequence::isNotBlank) { "require to be not blank" }
+        predicate(CharSequence::isNotBlank) { "requires to be not blank" }
 
     /**
      * A validator check length of a [String] (or [CharSequence])
@@ -54,6 +54,6 @@ object Strings {
      * @param regex the [Regex]
      * @param message (optional) an explanation
      */
-    fun matches(regex: Regex, message: String = "require matching '${regex.pattern}'"): Validator<CharSequence> =
+    fun matches(regex: Regex, message: String = "requires matching '${regex.pattern}'"): Validator<CharSequence> =
         predicate(regex::containsMatchIn) { message }
 }

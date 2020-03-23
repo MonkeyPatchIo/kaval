@@ -22,7 +22,7 @@ class StringsSpec : DescribeSpec() {
             it("notEmpty should reject an empty string") {
                 val result = validator.validate("")
                 result should beInvalidWithReason(
-                    "require to be not empty"
+                    "requires to be not empty"
                 )
             }
 
@@ -38,14 +38,14 @@ class StringsSpec : DescribeSpec() {
             it("notBlank should reject an empty string") {
                 val result = validator.validate("")
                 result should beInvalidWithReason(
-                    "require to be not blank"
+                    "requires to be not blank"
                 )
             }
 
             it("notBlank should reject a blank string") {
                 val result = validator.validate("  ")
                 result should beInvalidWithReason(
-                    "require to be not blank"
+                    "requires to be not blank"
                 )
             }
 
@@ -61,13 +61,13 @@ class StringsSpec : DescribeSpec() {
             it("hasLength should reject a too short string") {
                 val result = validator.validate("foo")
                 result should beInvalidWithReason(
-                    "require to be equals to 4, got 3"
+                    "requires to be equals to 4, got 3"
                 )
             }
             it("hasLength should reject a too long string") {
                 val result = validator.validate("foo bar")
                 result should beInvalidWithReason(
-                    "require to be equals to 4, got 7"
+                    "requires to be equals to 4, got 7"
                 )
             }
 
@@ -87,7 +87,7 @@ class StringsSpec : DescribeSpec() {
             it("maxLength should reject a too long string") {
                 val result = validator.validate("foo bar")
                 result should beInvalidWithReason(
-                    "require to be lower or equals to 4, got 7"
+                    "requires to be lower or equals to 4, got 7"
                 )
             }
 
@@ -103,7 +103,7 @@ class StringsSpec : DescribeSpec() {
             it("minLength should reject a too short string") {
                 val result = validator.validate("foo")
                 result should beInvalidWithReason(
-                    "require to be greater or equals to 4, got 3"
+                    "requires to be greater or equals to 4, got 3"
                 )
             }
             it("minLength should accept a too long string") {
@@ -124,7 +124,7 @@ class StringsSpec : DescribeSpec() {
             it("matches should reject an invalid string") {
                 val result = validator.validate("foo bar")
                 result should beInvalidWithReason(
-                    "require matching '$pattern'"
+                    "requires matching '$pattern'"
                 )
             }
 

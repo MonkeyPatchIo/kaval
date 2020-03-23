@@ -49,7 +49,7 @@ Check a `ValidationResult` have an issue with a specific message
 
 ```kotlin
 val validator: Validator<String> = TODO("pick your validator")
-validator.validate("plop") should beInvalidWithReason("require to be not empty")
+validator.validate("plop") should beInvalidWithReason("requires to be not empty")
 ```
 
 ### `beInvalidWithAllReasons`
@@ -59,8 +59,8 @@ Check a `ValidationResult` have some issues with specific messages
 ```kotlin
 val validator: Validator<String> = TODO("pick your validator")
 validator.validate("plop") should beInvalidWithAllReasons(
-    "require to be not empty",
-    "require matching '^[a-z]*$'"
+    "requires to be not empty",
+    "requires matching '^[a-z]*$'"
 )
 ```
 

@@ -20,13 +20,13 @@ class IntsSpec : DescribeSpec() {
             it("inRange should reject a lower number") {
                 val result = validator.validate(0)
                 result should beInvalidWithReason(
-                    "require to be in range 5..10, got 0"
+                    "requires to be in range 5..10, got 0"
                 )
             }
             it("inRange should reject a higher number") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be in range 5..10, got 42"
+                    "requires to be in range 5..10, got 42"
                 )
             }
             it("inRange should accept value lower bound") {
@@ -49,13 +49,13 @@ class IntsSpec : DescribeSpec() {
             it("strictlyPositive should reject a negative number") {
                 val result = validator.validate(-1)
                 result should beInvalidWithReason(
-                    "require to be strictly positive"
+                    "requires to be strictly positive"
                 )
             }
             it("strictlyPositive should reject zero") {
                 val result = validator.validate(0)
                 result should beInvalidWithReason(
-                    "require to be strictly positive"
+                    "requires to be strictly positive"
                 )
             }
             it("strictlyPositive should accept a positive number") {
@@ -70,7 +70,7 @@ class IntsSpec : DescribeSpec() {
             it("positive should reject a negative number") {
                 val result = validator.validate(-1)
                 result should beInvalidWithReason(
-                    "require to be positive"
+                    "requires to be positive"
                 )
             }
             it("positive should reject zero") {
@@ -89,13 +89,13 @@ class IntsSpec : DescribeSpec() {
             it("strictlyNegative should reject a positive number") {
                 val result = validator.validate(1)
                 result should beInvalidWithReason(
-                    "require to be strictly negative"
+                    "requires to be strictly negative"
                 )
             }
             it("strictlyNegative should reject zero") {
                 val result = validator.validate(0)
                 result should beInvalidWithReason(
-                    "require to be strictly negative"
+                    "requires to be strictly negative"
                 )
             }
             it("strictlyNegative should accept a negative number") {
@@ -110,7 +110,7 @@ class IntsSpec : DescribeSpec() {
             it("negative should reject a postive number") {
                 val result = validator.validate(1)
                 result should beInvalidWithReason(
-                    "require to be negative"
+                    "requires to be negative"
                 )
             }
             it("negative should reject zero") {

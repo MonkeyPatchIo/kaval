@@ -16,7 +16,7 @@ class ListSpec : DescribeSpec() {
 
             it("should reject List(1,10,100)") {
                 val result = listValidator.validate(listOf(1, 10, 100))
-                result should beInvalidWithReason("require to be greater than 9, got 1")
+                result should beInvalidWithReason("requires to be greater than 9, got 1")
             }
 
             it("should accept List(10,100)") {

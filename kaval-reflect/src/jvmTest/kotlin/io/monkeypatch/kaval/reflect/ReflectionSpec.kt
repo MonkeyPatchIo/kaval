@@ -21,7 +21,7 @@ class ReflectionSpec : DescribeSpec() {
 
                 val result = validator.validate(pojo)
 
-                result should beInvalidWithReason("require to be not blank")
+                result should beInvalidWithReason("requires to be not blank")
             }
 
             it("property should accept if field valid") {

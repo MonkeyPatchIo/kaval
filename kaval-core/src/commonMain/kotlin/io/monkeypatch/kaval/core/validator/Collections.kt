@@ -29,7 +29,7 @@ object Collections {
     fun <T> empty(): Validator<Collection<T>> =
         predicate({ it.isEmpty() }) {
             val content = it.joinToString(prefix = "{", postfix = "}", limit = truncateAfter)
-            "require an empty collection, got $content"
+            "requires an empty collection, got $content"
         }
 
     /**
@@ -39,7 +39,7 @@ object Collections {
      * @return the collection validator
      */
     fun <T> notEmpty(): Validator<Collection<T>> =
-        predicate({ it.isNotEmpty() }) { "require a not empty collection" }
+        predicate({ it.isNotEmpty() }) { "requires a not empty collection" }
 
     /**
      * A validator check size of a [Collection]
@@ -93,7 +93,7 @@ object Collections {
         }
 
     /**
-     * Validate an [Iterable] that require at least one element valid
+     * Validate an [Iterable] that requires at least one element valid
      * If the [Iterable] is empty, it is not valid
      *
      * @param T the element type
@@ -183,7 +183,7 @@ object Collections {
         }
 
     /**
-     * Validate a [Map] that require at least one value valid
+     * Validate a [Map] that requires at least one value valid
      * If the [Map] is empty, it is not valid
      *
      * @param K the key type
@@ -203,7 +203,7 @@ object Collections {
         }
 
     /**
-     * Validate a [Map] that require at least one key valid
+     * Validate a [Map] that requires at least one key valid
      * If the [Map] is empty, it is not valid
      *
      * @param K the key type
@@ -223,7 +223,7 @@ object Collections {
         }
 
     /**
-     * Validate a [Map] that require at least one value valid
+     * Validate a [Map] that requires at least one value valid
      * If the [Map] is empty, it is not valid
      *
      * @param K the key type
@@ -258,7 +258,7 @@ object Collections {
         }
 
         return when (invalid) {
-            is Valid -> Invalid("require at least one $name valid, got no $names")
+            is Valid -> Invalid("requires at least one $name valid, got no $names")
             is Invalid -> {
                 val causes =
                     if (invalid.reasons.size == 1) invalid.reasons[0].toString()
@@ -268,7 +268,7 @@ object Collections {
                             is BaseValidationIssue -> it.message
                         }
                     }.prependIndent(" ")
-                Invalid("*", "require at least one $name valid, all $names are invalid: $causes")
+                Invalid("*", "requires at least one $name valid, all $names are invalid: $causes")
             }
         }
     }

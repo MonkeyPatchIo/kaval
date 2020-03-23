@@ -96,7 +96,7 @@ class CommonsSpec : DescribeSpec() {
             it("containsBy should be valid when not into the iterable") {
                 assertAll(from(iterable)) { i ->
                     val result = validator.validate(i + 1)
-                    result should beInvalidWithReason("require to be in {1, 3, 5, 7, ...}, got ${i + 1}")
+                    result should beInvalidWithReason("requires to be in {1, 3, 5, 7, ...}, got ${i + 1}")
                 } }
         }
 
@@ -115,7 +115,7 @@ class CommonsSpec : DescribeSpec() {
             it("notContainsBy should be valid when into the iterable") {
                 assertAll(from(iterable)) { i ->
                     val result = validator.validate(i)
-                    result should beInvalidWithReason("require not to be in {1, 3, 5, 7, ...}, got $i")
+                    result should beInvalidWithReason("requires not to be in {1, 3, 5, 7, ...}, got $i")
                 } }
         }
 
@@ -175,7 +175,7 @@ class CommonsSpec : DescribeSpec() {
                 val pojo = MyPojo("", 42)
                 val result = validator.validate(pojo)
                 result should beInvalidWithReason(
-                    "require to be not blank"
+                    "requires to be not blank"
                 )
             }
 
@@ -194,7 +194,7 @@ class CommonsSpec : DescribeSpec() {
                 val result = validator.validate(
                     AnotherImplementation
                 )
-                result should beInvalidWithReason("require to be a ${BaseImplementation::class.java}")
+                result should beInvalidWithReason("requires to be a ${BaseImplementation::class.java}")
             }
 
             it("isInstance should accept if instance valid") {

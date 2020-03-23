@@ -25,14 +25,14 @@ class ComparableSpec : DescribeSpec() {
             it("greaterThan should reject same value") {
                 val result = validator.validate(4)
                 result should beInvalidWithReason(
-                    "require to be greater than 4, got 4"
+                    "requires to be greater than 4, got 4"
                 )
             }
 
             it("greaterThan should reject a lower value") {
                 val result = validator.validate(2)
                 result should beInvalidWithReason(
-                    "require to be greater than 4, got 2"
+                    "requires to be greater than 4, got 2"
                 )
             }
         }
@@ -47,14 +47,14 @@ class ComparableSpec : DescribeSpec() {
             it("greaterThan should reject same value") {
                 val result = validator.validate(4)
                 result should beInvalidWithReason(
-                    "require to be greater than 4, got 4"
+                    "requires to be greater than 4, got 4"
                 )
             }
 
             it("greaterThan should reject a lower value") {
                 val result = validator.validate(2)
                 result should beInvalidWithReason(
-                    "require to be greater than 4, got 2"
+                    "requires to be greater than 4, got 2"
                 )
             }
         }
@@ -74,7 +74,7 @@ class ComparableSpec : DescribeSpec() {
             it("greaterOrEqualTo should reject a lower value") {
                 val result = validator.validate(2)
                 result should beInvalidWithReason(
-                    "require to be greater or equals to 4, got 2"
+                    "requires to be greater or equals to 4, got 2"
                 )
             }
         }
@@ -94,7 +94,7 @@ class ComparableSpec : DescribeSpec() {
             it("greaterOrEqualTo should reject a lower value") {
                 val result = validator.validate(2)
                 result should beInvalidWithReason(
-                    "require to be greater or equals to 4, got 2"
+                    "requires to be greater or equals to 4, got 2"
                 )
             }
         }
@@ -105,13 +105,13 @@ class ComparableSpec : DescribeSpec() {
             it("lowerThan should accept a greater value") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be lower than 4, got 42"
+                    "requires to be lower than 4, got 42"
                 )
             }
             it("lowerThan should reject same value") {
                 val result = validator.validate(4)
                 result should beInvalidWithReason(
-                    "require to be lower than 4, got 4"
+                    "requires to be lower than 4, got 4"
                 )
             }
 
@@ -127,13 +127,13 @@ class ComparableSpec : DescribeSpec() {
             it("lowerThan should accept a greater value") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be lower than 4, got 42"
+                    "requires to be lower than 4, got 42"
                 )
             }
             it("lowerThan should reject same value") {
                 val result = validator.validate(4)
                 result should beInvalidWithReason(
-                    "require to be lower than 4, got 4"
+                    "requires to be lower than 4, got 4"
                 )
             }
 
@@ -149,7 +149,7 @@ class ComparableSpec : DescribeSpec() {
             it("lowerOrEqualTo should accept a greater value") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be lower or equals to 4, got 42"
+                    "requires to be lower or equals to 4, got 42"
                 )
             }
             it("lowerOrEqualTo should accept same value") {
@@ -169,7 +169,7 @@ class ComparableSpec : DescribeSpec() {
             it("lowerOrEqualTo should accept a greater value") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be lower or equals to 4, got 42"
+                    "requires to be lower or equals to 4, got 42"
                 )
             }
             it("lowerOrEqualTo should accept same value") {
@@ -189,7 +189,7 @@ class ComparableSpec : DescribeSpec() {
             it("equalsTo should reject a wrong number") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be equals to 4, got 42"
+                    "requires to be equals to 4, got 42"
                 )
             }
             it("equalsTo should accept value is Ok") {
@@ -204,7 +204,7 @@ class ComparableSpec : DescribeSpec() {
             it("equalsTo should reject a wrong number") {
                 val result = validator.validate(42)
                 result should beInvalidWithReason(
-                    "require to be equals to 4, got 42"
+                    "requires to be equals to 4, got 42"
                 )
             }
             it("equalsTo should accept value is Ok") {
@@ -219,13 +219,13 @@ class ComparableSpec : DescribeSpec() {
             it("inClosedRange should reject a lower string") {
                 val result = validator.validate("0")
                 result should beInvalidWithReason(
-                    "require to be in range a..f, got 0"
+                    "requires to be in range a..f, got 0"
                 )
             }
             it("inClosedRange should reject a higher string") {
                 val result = validator.validate("z")
                 result should beInvalidWithReason(
-                    "require to be in range a..f, got z"
+                    "requires to be in range a..f, got z"
                 )
             }
             it("inClosedRange should accept value lower bound") {

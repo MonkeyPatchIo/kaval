@@ -68,7 +68,7 @@ data class Invalid internal constructor(val reasons: List<ValidationIssue>) : Va
     constructor(field: String, reason: String) : this(listOf(FieldValidationIssue(field, reason)))
 
     init {
-        require(reasons.isNotEmpty()) { "Invalid require at least one reason" }
+        require(reasons.isNotEmpty()) { "Invalid requires at least one reason" }
     }
 
     override fun toString(): String =

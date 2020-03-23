@@ -13,7 +13,7 @@ object Doubles {
      * @return a validator for `in`
      */
     fun inRange(range: ClosedRange<Double>): Validator<Double> =
-        predicate({ it in range }) { "require to be in range $range, got $it" }
+        predicate({ it in range }) { "requires to be in range $range, got $it" }
 
     /**
      * A validator for [Double] strictly positive
@@ -21,7 +21,7 @@ object Doubles {
      * @return a validator for `> 0 `
      */
     val strictlyPositive: Validator<Double> =
-        predicate({ it > 0 }) { "require to be strictly positive" }
+        predicate({ it > 0 }) { "requires to be strictly positive" }
 
     /**
      * A validator for [Double] strictly positive
@@ -29,7 +29,7 @@ object Doubles {
      * @return a validator for `>= 0 `
      */
     val positive: Validator<Double> =
-        predicate({ it >= 0 }) { "require to be positive" }
+        predicate({ it >= 0 }) { "requires to be positive" }
 
     /**
      * A validator for [Double] strictly negative
@@ -37,7 +37,7 @@ object Doubles {
      * @return a validator for `> 0 `
      */
     val strictlyNegative: Validator<Double> =
-        predicate({ it < 0 }) { "require to be strictly negative" }
+        predicate({ it < 0 }) { "requires to be strictly negative" }
 
     /**
      * A validator for [Double] strictly negative
@@ -45,5 +45,5 @@ object Doubles {
      * @return a validator for `>= 0 `
      */
     val negative: Validator<Double> =
-        predicate({ it <= 0 }) { "require to be negative" }
+        predicate({ it <= 0 }) { "requires to be negative" }
 }

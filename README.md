@@ -87,11 +87,11 @@ val user = User(
 val result: ValidationResult<User> = userValidator.validate(user)
 println(result)
 // Invalid:
-//  - [firstName] require to be not blank
-//  - [lastName.length] require to be lower or equals to 255, got 500
-//  - [address.line1] require to be not blank
-//  - [address.zipCode] require to be greater than 0, got -1
-//  - [address.city] require to be not blank should be Valid
+//  - [firstName] requires to be not blank
+//  - [lastName.length] requires to be lower or equals to 255, got 500
+//  - [address.line1] requires to be not blank
+//  - [address.zipCode] requires to be greater than 0, got -1
+//  - [address.city] requires to be not blank should be Valid
 ```
 
 ## Modules

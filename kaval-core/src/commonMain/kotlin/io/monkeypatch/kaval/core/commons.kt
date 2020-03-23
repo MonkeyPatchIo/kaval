@@ -43,7 +43,7 @@ fun <T> predicate(predicate: (T) -> Boolean, reason: (T) -> String): Validator<T
  * @return a validator that reject null
  */
 fun <T> notNull(): Validator<T?> =
-    predicate({ it != null }) { "require to be not null" }
+    predicate({ it != null }) { "requires to be not null" }
 
 /**
  * Validate if the element is into an iterable
@@ -55,7 +55,7 @@ fun <T> notNull(): Validator<T?> =
 fun <T> containsBy(iter: Iterable<T>): Validator<T> =
     predicate({ iter.contains(it) }) {
         val list = iter.joinToString(separator = ", ", prefix = "{", postfix = "}", limit = 4)
-        "require to be in $list, got $it"
+        "requires to be in $list, got $it"
     }
 
 /**
@@ -68,7 +68,7 @@ fun <T> containsBy(iter: Iterable<T>): Validator<T> =
 fun <T> notContainsBy(iter: Iterable<T>): Validator<T> =
     predicate({ !iter.contains(it) }) {
         val list = iter.joinToString(separator = ", ", prefix = "{", postfix = "}", limit = 4)
-        "require not to be in $list, got $it"
+        "requires not to be in $list, got $it"
     }
 
 /**
@@ -80,7 +80,7 @@ fun <T> notContainsBy(iter: Iterable<T>): Validator<T> =
  * val validator: Validator<String?> = nullOr { matches<String>(Regex("pl.*p")) }
  *
  * validator.validate(null) // Valid
- * validator.validate("foobar") // Invalid: require matching 'pl.*p'
+ * validator.validate("foobar") // Invalid: requires matching 'pl.*p'
  * validator.validate("plop") // Valid
  * ```
  *
@@ -125,7 +125,7 @@ fun <H, C> field(fieldName: String, fieldExtractor: (H) -> C, fieldValidator: ()
  * @return a validator that checks if the element is instance of type `U`
  */
 inline fun <T, reified U : T> isInstance(): Validator<T> =
-    predicate({ it is U }) { "require to be a ${U::class}" }
+    predicate({ it is U }) { "requires to be a ${U::class}" }
 
 /**
  * Validate with a more specific validator
@@ -149,7 +149,7 @@ inline fun <T, reified U : T> isInstance(): Validator<T> =
  *   }
  *
  * validator.validate(HttpStatus.Ok(201)) // Valid
- * validator.validate(HttpStatus.Error(201)) // Invalid: [value] require to be in range 400..499, got 201
+ * validator.validate(HttpStatus.Error(201)) // Invalid: [value] requires to be in range 400..499, got 201
  * ```
  *
  * @param uValidator a validator for an element of type `U`

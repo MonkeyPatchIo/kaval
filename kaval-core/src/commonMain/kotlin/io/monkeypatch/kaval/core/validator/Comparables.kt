@@ -15,7 +15,7 @@ object Comparables {
      * @return a validator for `>`
      */
     fun <T : Comparable<T>> greaterThan(value: T): Validator<T> =
-        predicate({ it > value }) { "require to be greater than $value, got $it" }
+        predicate({ it > value }) { "requires to be greater than $value, got $it" }
 
     /**
      * A validator for _greater than_
@@ -26,7 +26,7 @@ object Comparables {
      * @return a validator for `>`
      */
     fun <T> greaterThan(value: T, comparator: Comparator<T>): Validator<T> =
-        predicate({ comparator.compare(it, value) > 0 }) { "require to be greater than $value, got $it" }
+        predicate({ comparator.compare(it, value) > 0 }) { "requires to be greater than $value, got $it" }
 
     /**
      * A validator for _greater or equals to_
@@ -36,7 +36,7 @@ object Comparables {
      * @return a validator for `>=`
      */
     fun <T : Comparable<T>> greaterOrEqualTo(value: T): Validator<T> =
-        predicate({ it >= value }) { "require to be greater or equals to $value, got $it" }
+        predicate({ it >= value }) { "requires to be greater or equals to $value, got $it" }
 
     /**
      * A validator for _greater or equals to_
@@ -47,7 +47,7 @@ object Comparables {
      * @return a validator for `>=`
      */
     fun <T> greaterOrEqualTo(value: T, comparator: Comparator<T>): Validator<T> =
-        predicate({ comparator.compare(it, value) >= 0 }) { "require to be greater or equals to $value, got $it" }
+        predicate({ comparator.compare(it, value) >= 0 }) { "requires to be greater or equals to $value, got $it" }
 
     /**
      * A validator for _lower than_
@@ -57,7 +57,7 @@ object Comparables {
      * @return a validator for `<`
      */
     fun <T : Comparable<T>> lowerThan(value: T): Validator<T> =
-        predicate({ it < value }) { "require to be lower than $value, got $it" }
+        predicate({ it < value }) { "requires to be lower than $value, got $it" }
 
     /**
      * A validator for _lower than_
@@ -68,7 +68,7 @@ object Comparables {
      * @return a validator for `<`
      */
     fun <T> lowerThan(value: T, comparator: Comparator<T>): Validator<T> =
-        predicate({ comparator.compare(it, value) < 0 }) { "require to be lower than $value, got $it" }
+        predicate({ comparator.compare(it, value) < 0 }) { "requires to be lower than $value, got $it" }
 
     /**
      * A validator for _lower or equals to_
@@ -78,7 +78,7 @@ object Comparables {
      * @return a validator for `<=`
      */
     fun <T : Comparable<T>> lowerOrEqualTo(value: T): Validator<T> =
-        predicate({ it <= value }) { "require to be lower or equals to $value, got $it" }
+        predicate({ it <= value }) { "requires to be lower or equals to $value, got $it" }
 
     /**
      * A validator for _lower or equals to_
@@ -89,7 +89,7 @@ object Comparables {
      * @return a validator for `<=`
      */
     fun <T> lowerOrEqualTo(value: T, comparator: Comparator<T>): Validator<T> =
-        predicate({ comparator.compare(it, value) <= 0 }) { "require to be lower or equals to $value, got $it" }
+        predicate({ comparator.compare(it, value) <= 0 }) { "requires to be lower or equals to $value, got $it" }
 
     /**
      * A validator for _equals to_
@@ -99,7 +99,7 @@ object Comparables {
      * @return a validator for `==`
      */
     fun <T : Comparable<T>> equalsTo(value: T): Validator<T> =
-        predicate({ it == value }) { "require to be equals to $value, got $it" }
+        predicate({ it == value }) { "requires to be equals to $value, got $it" }
 
     /**
      * A validator for _equals to_
@@ -110,7 +110,7 @@ object Comparables {
      * @return a validator for `==`
      */
     fun <T> equalsTo(value: T, comparator: Comparator<T>): Validator<T> =
-        predicate({ comparator.compare(it, value) == 0 }) { "require to be equals to $value, got $it" }
+        predicate({ comparator.compare(it, value) == 0 }) { "requires to be equals to $value, got $it" }
 
     /**
      * A validator for _in closed range_ with [Comparable]
@@ -120,5 +120,5 @@ object Comparables {
      * @return a validator for `in`
      */
     fun <T : Comparable<T>> inClosedRange(range: ClosedRange<T>): Validator<T> =
-        predicate({ it in range }) { "require to be in range $range, got $it" }
+        predicate({ it in range }) { "requires to be in range $range, got $it" }
 }

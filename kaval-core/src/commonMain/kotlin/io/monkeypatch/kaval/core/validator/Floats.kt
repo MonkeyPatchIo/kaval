@@ -13,7 +13,7 @@ object Floats {
      * @return a validator for `in`
      */
     fun inRange(range: ClosedRange<Float>): Validator<Float> =
-        predicate({ it in range }) { "require to be in range $range, got $it" }
+        predicate({ it in range }) { "requires to be in range $range, got $it" }
 
     /**
      * A validator for [Float] strictly positive
@@ -21,7 +21,7 @@ object Floats {
      * @return a validator for `> 0 `
      */
     val strictlyPositive: Validator<Float> =
-        predicate({ it > 0 }) { "require to be strictly positive" }
+        predicate({ it > 0 }) { "requires to be strictly positive" }
 
     /**
      * A validator for [Float] strictly positive
@@ -29,7 +29,7 @@ object Floats {
      * @return a validator for `>= 0 `
      */
     val positive: Validator<Float> =
-        predicate({ it >= 0 }) { "require to be positive" }
+        predicate({ it >= 0 }) { "requires to be positive" }
 
     /**
      * A validator for [Float] strictly negative
@@ -37,7 +37,7 @@ object Floats {
      * @return a validator for `> 0 `
      */
     val strictlyNegative: Validator<Float> =
-        predicate({ it < 0 }) { "require to be strictly negative" }
+        predicate({ it < 0 }) { "requires to be strictly negative" }
 
     /**
      * A validator for [Float] strictly negative
@@ -45,5 +45,5 @@ object Floats {
      * @return a validator for `>= 0 `
      */
     val negative: Validator<Float> =
-        predicate({ it <= 0 }) { "require to be negative" }
+        predicate({ it <= 0 }) { "requires to be negative" }
 }
