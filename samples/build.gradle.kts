@@ -14,7 +14,7 @@ dependencies {
 
     // Test
     testImplementation(project(":kaval-kotest"))
-    testImplementation(Libs.Kotest.core)
+    testImplementation(Libs.Kotest.assertionsJvm)
     testImplementation(Libs.Kotest.runnerJunit5)
 }
 

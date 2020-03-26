@@ -1,8 +1,8 @@
 package io.monkeypatch.kaval.core
 
-import io.kotlintest.shouldBe
-import io.kotlintest.shouldThrow
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 
 class IsValidSpec : DescribeSpec() {
 

@@ -1,7 +1,7 @@
 package io.monkeypatch.kaval.kotlintest
 
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import io.monkeypatch.kaval.core.alwaysInvalid
 import io.monkeypatch.kaval.core.alwaysValid
 

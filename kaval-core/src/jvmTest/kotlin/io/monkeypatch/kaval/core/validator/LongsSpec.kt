@@ -1,7 +1,7 @@
 package io.monkeypatch.kaval.core.validator
 
-import io.kotlintest.should
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.should
 import io.monkeypatch.kaval.core.validator.Longs.inRange
 import io.monkeypatch.kaval.core.validator.Longs.negative
 import io.monkeypatch.kaval.core.validator.Longs.positive

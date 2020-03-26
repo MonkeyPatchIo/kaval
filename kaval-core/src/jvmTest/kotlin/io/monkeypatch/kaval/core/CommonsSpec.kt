@@ -1,19 +1,21 @@
 package io.monkeypatch.kaval.core
 
-import io.kotlintest.properties.Gen.Companion.bool
-import io.kotlintest.properties.Gen.Companion.constant
-import io.kotlintest.properties.Gen.Companion.double
-import io.kotlintest.properties.Gen.Companion.from
-import io.kotlintest.properties.Gen.Companion.int
-import io.kotlintest.properties.Gen.Companion.oneOf
-import io.kotlintest.properties.Gen.Companion.string
-import io.kotlintest.properties.assertAll
-import io.kotlintest.should
-import io.kotlintest.specs.DescribeSpec
-import io.kotlintest.tables.forAll
-import io.kotlintest.tables.headers
-import io.kotlintest.tables.row
-import io.kotlintest.tables.table
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.data.forAll
+import io.kotest.data.headers
+import io.kotest.data.row
+import io.kotest.data.table
+import io.kotest.matchers.should
+import io.kotest.property.Arb
+import io.kotest.property.arbitrary.bool
+import io.kotest.property.arbitrary.choice
+import io.kotest.property.arbitrary.constant
+import io.kotest.property.arbitrary.double
+import io.kotest.property.arbitrary.element
+import io.kotest.property.arbitrary.filterNot
+import io.kotest.property.arbitrary.int
+import io.kotest.property.arbitrary.string
+import io.kotest.property.checkAll
 import io.monkeypatch.kaval.core.validator.Strings.notBlank
 import io.monkeypatch.kaval.kotlintest.beInvalid
 import io.monkeypatch.kaval.kotlintest.beInvalidWithReason
@@ -27,18 +29,18 @@ class CommonsSpec : DescribeSpec() {
 
     data class MyPojo(val name: String, val value: Int)
 
-    private val any = oneOf(
-        string(),
-        int(),
-        double(),
-        bool(),
-        constant(null)
+    private val any = Arb.choice(
+        Arb.string(),
+        Arb.int(),
+        Arb.double(),
+        Arb.bool(),
+        Arb.constant(null)
     )
 
     init {
         describe("alwaysValid") {
             it("alwaysValid should always be Valid") {
-                assertAll(any) { a ->
+                checkAll(any) { a ->
                     val validator = alwaysValid<Any?>()
                     validator.validate(a) should beValid()
                 }
@@ -47,7 +49,7 @@ class CommonsSpec : DescribeSpec() {
 
         describe("alwaysInvalid") {
             it("alwaysInvalid should always be Invalid") {
-                assertAll(any) { a ->
+                checkAll(any) { a ->
                     val reason = "plaf!"
                     val validator = alwaysInvalid<Any?>(reason)
                     validator.validate(a) should beInvalidWithReason(
@@ -62,7 +64,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("predicate should be valid if true") {
                 val validator = predicate<Any?>({ true }) { reason }
-                assertAll(any) { a ->
+                checkAll(any) { a ->
                     val result = validator.validate(a)
 
                     result should beValid()
@@ -71,7 +73,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("predicate should be valid if false") {
                 val validator = predicate<Any?>({ false }) { reason }
-                assertAll(any) { a ->
+                checkAll(any) { a ->
                     val result = validator.validate(a)
 
                     result should beInvalidWithReason(
@@ -86,7 +88,7 @@ class CommonsSpec : DescribeSpec() {
             val validator = containsBy(iterable)
 
             it("containsBy should be valid when into the iterable") {
-                assertAll(from(iterable)) { i ->
+                checkAll(Arb.element(iterable)) { i ->
                     val result = validator.validate(i)
 
                     result should beValid()
@@ -94,7 +96,7 @@ class CommonsSpec : DescribeSpec() {
             }
 
             it("containsBy should be valid when not into the iterable") {
-                assertAll(from(iterable)) { i ->
+                checkAll(Arb.element(iterable)) { i ->
                     val result = validator.validate(i + 1)
                     result should beInvalidWithReason("requires to be in {1, 3, 5, 7, ...}, got ${i + 1}")
                 } }
@@ -105,7 +107,7 @@ class CommonsSpec : DescribeSpec() {
             val validator = notContainsBy(iterable)
 
             it("notContainsBy should be valid when not into the iterable") {
-                assertAll(from(iterable)) { i ->
+                checkAll(Arb.element(iterable)) { i ->
                     val result = validator.validate(i + 1)
 
                     result should beValid()
@@ -113,7 +115,7 @@ class CommonsSpec : DescribeSpec() {
             }
 
             it("notContainsBy should be valid when into the iterable") {
-                assertAll(from(iterable)) { i ->
+                checkAll(Arb.element(iterable)) { i ->
                     val result = validator.validate(i)
                     result should beInvalidWithReason("requires not to be in {1, 3, 5, 7, ...}, got $i")
                 } }
@@ -123,7 +125,7 @@ class CommonsSpec : DescribeSpec() {
             val validator = notNull<Any?>()
 
             it("notNull should be valid if not null") {
-                assertAll(any.filterNot { it == null }) { a ->
+                checkAll(any.filterNot { it == null }) { a ->
                     val result = validator.validate(a)
 
                     result should beValid()
@@ -144,17 +146,17 @@ class CommonsSpec : DescribeSpec() {
 
             val usesCases = table(
                 headers("name", "generator", "validataor", "isValid"),
-                row("null and valid", constant(null), valid, true),
-                row("null and invalid", constant(null), invalid, true),
+                row("null and valid", Arb.constant(null), valid, true),
+                row("null and invalid", Arb.constant(null), invalid, true),
                 row("not null and valid", any.filterNot { it == null }, valid, true),
                 row("not null and invalid", any.filterNot { it == null }, invalid, false)
             )
 
-            forAll(usesCases) { name, gen, notNullValidator, isValid ->
+            usesCases.forAll { name, gen, notNullValidator, isValid ->
                 val validator = nullOr { notNullValidator }
 
                 it("$name should be ${if (isValid) "valid" else "invalid"}") {
-                    assertAll(gen) { a ->
+                    checkAll(gen) { a ->
                         val result = validator.validate(a)
 
                         if (isValid) result should beValid()
