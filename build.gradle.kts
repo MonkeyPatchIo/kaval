@@ -1,3 +1,4 @@
+import net.researchgate.release.GitAdapter
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -37,4 +38,8 @@ release {
     preTagCommitMessage = ":bookmark: release new version: "
     tagCommitMessage = ":bookmark: release new version: "
     newVersionCommitMessage = ":bookmark: prepare new version: "
+
+    with (propertyMissing("git") as GitAdapter.GitConfig) {
+        pushToRemote = false
+    }
 }
