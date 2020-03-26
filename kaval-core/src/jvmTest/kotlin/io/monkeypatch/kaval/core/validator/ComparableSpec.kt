@@ -1,7 +1,7 @@
 package io.monkeypatch.kaval.core.validator
 
-import io.kotlintest.should
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.should
 import io.monkeypatch.kaval.core.Validator
 import io.monkeypatch.kaval.core.validator.Comparables.equalsTo
 import io.monkeypatch.kaval.core.validator.Comparables.greaterOrEqualTo

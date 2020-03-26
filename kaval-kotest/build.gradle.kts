@@ -30,7 +30,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                api(project(":kaval-core"))
+                implementation(project(":kaval-core"))
+                api(Libs.Kotest.assertionsMpp)
             }
         }
 
@@ -38,8 +39,7 @@ kotlin {
             compilations["main"].defaultSourceSet {
                 dependencies {
                     implementation(kotlin("stdlib-jdk8"))
-                    implementation(Libs.Kotest.core)
-                    implementation(Libs.Kotest.assertions)
+                    implementation(Libs.Kotest.assertionsJvm)
                 }
                 compilations["test"].defaultSourceSet {
                     dependencies {

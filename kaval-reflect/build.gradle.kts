@@ -46,7 +46,7 @@ kotlin {
                 dependencies {
                     api(project(":kaval-core"))
                     implementation(project(":kaval-kotest"))
-                    implementation(Libs.Kotest.core)
+                    implementation(Libs.Kotest.assertionsJvm)
                     implementation(Libs.Kotest.runnerJunit5)
                 }
             }

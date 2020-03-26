@@ -49,8 +49,9 @@ kotlin {
 
                 compilations["test"].defaultSourceSet {
                     dependencies {
-                        implementation(Libs.Kotest.core)
                         implementation(project(":kaval-kotest"))
+                        implementation(Libs.Kotest.assertionsJvm)
+                        implementation(Libs.Kotest.propertyJvm)
                         implementation(Libs.Kotest.runnerJunit5)
                     }
                 }

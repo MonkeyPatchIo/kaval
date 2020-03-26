@@ -1,7 +1,7 @@
 package io.monkeypatch.kaval.kotlintest
 
-import io.kotlintest.Matcher
-import io.kotlintest.MatcherResult
+import io.kotest.matchers.Matcher
+import io.kotest.matchers.MatcherResult
 import io.monkeypatch.kaval.core.Valid
 import io.monkeypatch.kaval.core.Validator
 

@@ -1,7 +1,7 @@
 package io.monkeypatch.kaval.reflect
 
-import io.kotlintest.should
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.should
 import io.monkeypatch.kaval.core.Validator
 import io.monkeypatch.kaval.core.validator.Strings.notBlank
 import io.monkeypatch.kaval.kotlintest.beInvalidWithReason

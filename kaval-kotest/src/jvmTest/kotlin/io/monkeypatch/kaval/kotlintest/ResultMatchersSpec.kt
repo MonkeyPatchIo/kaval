@@ -1,8 +1,8 @@
 package io.monkeypatch.kaval.kotlintest
 
-import io.kotlintest.matchers.startWith
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.startWith
 import io.monkeypatch.kaval.core.Invalid
 import io.monkeypatch.kaval.core.Valid
 
@@ -143,8 +143,8 @@ class ResultMatchersSpec : DescribeSpec() {
                 val other = Invalid("_$reason")
                 val result = matcher.test(other)
                 result.passed() shouldBe false
-                result.failureMessage() shouldBe "$other should be Invalid with any reason, _plaf should start with pl (diverged at index 0)"
-                result.negatedFailureMessage() shouldBe "$other should not be Invalid with any reason, _plaf should start with pl (diverged at index 0)"
+                result.failureMessage() shouldBe "$other should be Invalid with any reason, \"_plaf\" should start with \"pl\" (diverged at index 0)"
+                result.negatedFailureMessage() shouldBe "$other should not be Invalid with any reason, \"_plaf\" should start with \"pl\" (diverged at index 0)"
             }
         }
     }

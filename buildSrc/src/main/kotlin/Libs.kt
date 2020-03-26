@@ -7,14 +7,14 @@ object Libs {
     const val kotlinter = "2.3.2"
     const val release = "2.8.1"
     const val versions = "0.28.0"
-    const val bintray = "1.8.4"
     const val orchid = "0.19.0"
 
     object Kotest {
-        private const val version = "3.4.2"
-        const val core = "io.kotlintest:kotlintest-core:$version"
-        const val assertions = "io.kotlintest:kotlintest-assertions:$version"
-        const val runnerJunit5 = "io.kotlintest:kotlintest-runner-junit5:$version"
+        private const val version = "4.0.1"
+        const val assertionsMpp = "io.kotest:kotest-assertions:$version"
+        const val assertionsJvm = "io.kotest:kotest-assertions-core-jvm:$version"
+        const val propertyJvm = "io.kotest:kotest-property-jvm:$version"
+        const val runnerJunit5 = "io.kotest:kotest-runner-junit5-jvm:$version"
     }
 
     object Orchid {

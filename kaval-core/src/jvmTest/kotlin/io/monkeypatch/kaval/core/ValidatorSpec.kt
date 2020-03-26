@@ -1,29 +1,30 @@
 package io.monkeypatch.kaval.core
 
-import io.kotlintest.properties.Gen.Companion.bool
-import io.kotlintest.properties.Gen.Companion.constant
-import io.kotlintest.properties.Gen.Companion.double
-import io.kotlintest.properties.Gen.Companion.int
-import io.kotlintest.properties.Gen.Companion.oneOf
-import io.kotlintest.properties.Gen.Companion.string
-import io.kotlintest.properties.assertAll
-import io.kotlintest.should
-import io.kotlintest.specs.DescribeSpec
-import io.kotlintest.tables.forAll
-import io.kotlintest.tables.headers
-import io.kotlintest.tables.row
-import io.kotlintest.tables.table
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.data.forAll
+import io.kotest.data.headers
+import io.kotest.data.row
+import io.kotest.data.table
+import io.kotest.matchers.should
+import io.kotest.property.Arb
+import io.kotest.property.arbitrary.bool
+import io.kotest.property.arbitrary.choice
+import io.kotest.property.arbitrary.constant
+import io.kotest.property.arbitrary.double
+import io.kotest.property.arbitrary.int
+import io.kotest.property.arbitrary.string
+import io.kotest.property.checkAll
 import io.monkeypatch.kaval.kotlintest.beInvalidWithReason
 import io.monkeypatch.kaval.kotlintest.beValid
 
 class ValidatorSpec : DescribeSpec() {
 
-    private val any = oneOf(
-        string(),
-        int(),
-        double(),
-        bool(),
-        constant(null)
+    private val any = Arb.choice(
+        Arb.string(),
+        Arb.int(),
+        Arb.double(),
+        Arb.bool(),
+        Arb.constant(null)
     )
 
     init {
@@ -41,11 +42,11 @@ class ValidatorSpec : DescribeSpec() {
                 row("invalid and invalid", invalid, invalid, false)
             )
 
-            forAll(usesCases) { name, first, second, isValid ->
+            usesCases.forAll { name, first, second, isValid ->
                 val validator = first and second
 
                 it("$name should be ${if (isValid) "valid" else "invalid"}") {
-                    assertAll(any) { a ->
+                    checkAll(any) { a ->
                         val result = validator.validate(a)
 
                         if (isValid) result should beValid()
@@ -72,11 +73,11 @@ class ValidatorSpec : DescribeSpec() {
                 row("invalid andThen invalid", invalid1, invalid2, listOf(reason1))
             )
 
-            forAll(usesCases) { name, first, second, reasons ->
+            usesCases.forAll { name, first, second, reasons ->
                 val validator = first andThen second
 
                 it("$name should be ${if (reasons.isEmpty()) "valid" else "invalid with ${reasons.joinToString(", ")}"}") {
-                    assertAll(any) {
+                    checkAll(any) {
                         val result = validator.validate(any)
                         if (reasons.isEmpty()) result should beValid()
                         else reasons.forEach { reason ->
@@ -102,11 +103,11 @@ class ValidatorSpec : DescribeSpec() {
                 row("invalid or invalid", invalid, invalid, false)
             )
 
-            forAll(usesCases) { name, first, second, isValid ->
+            usesCases.forAll { name, first, second, isValid ->
                 val validator = first or second
 
                 it("$name should be ${if (isValid) "valid" else "invalid"}") {
-                    assertAll(any) { a ->
+                    checkAll(any) { a ->
                         val result = validator.validate(a)
 
                         if (isValid) result should beValid()

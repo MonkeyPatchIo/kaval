@@ -1,5 +1,5 @@
-import io.kotlintest.should
-import io.kotlintest.specs.DescribeSpec
+import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.should
 import io.monkeypatch.kaval.kotlintest.beInvalidWithReason
 import io.monkeypatch.kaval.kotlintest.beValid
 
