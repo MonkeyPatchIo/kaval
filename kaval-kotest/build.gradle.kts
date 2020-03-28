@@ -1,4 +1,3 @@
-import groovy.util.Node
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
@@ -41,15 +40,16 @@ kotlin {
                     implementation(kotlin("stdlib-jdk8"))
                     implementation(Libs.Kotest.assertionsJvm)
                 }
-                compilations["test"].defaultSourceSet {
-                    dependencies {
-                        implementation(Libs.Kotest.runnerJunit5)
-                    }
+            }
+            compilations["test"].defaultSourceSet {
+                dependencies {
+                    implementation(Libs.Kotest.runnerJunit5)
                 }
             }
         }
     }
 }
+
 
 tasks {
     dokka {

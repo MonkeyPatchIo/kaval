@@ -1,4 +1,3 @@
-import groovy.util.Node
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {

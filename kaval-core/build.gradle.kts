@@ -46,19 +46,19 @@ kotlin {
                 dependencies {
                     implementation(kotlin("stdlib-jdk8"))
                 }
-
-                compilations["test"].defaultSourceSet {
-                    dependencies {
-                        implementation(project(":kaval-kotest"))
-                        implementation(Libs.Kotest.assertionsJvm)
-                        implementation(Libs.Kotest.propertyJvm)
-                        implementation(Libs.Kotest.runnerJunit5)
-                    }
+            }
+            compilations["test"].defaultSourceSet {
+                dependencies {
+                    implementation(project(":kaval-kotest"))
+                    implementation(Libs.Kotest.assertionsJvm)
+                    implementation(Libs.Kotest.propertyJvm)
+                    implementation(Libs.Kotest.runnerJunit5)
                 }
             }
         }
     }
 }
+
 
 tasks {
     dokka {
@@ -92,10 +92,10 @@ publishing {
 //// Add a Javadoc JAR to each publication as required by Maven Central
 
 val javadocJar by tasks.creating(Jar::class) {
-        val dokkaTask = tasks.getByName<DokkaTask>("dokka")
-        from(dokkaTask.outputDirectory)
-        dependsOn(dokkaTask)
-        dependsOn("build")
+    val dokkaTask = tasks.getByName<DokkaTask>("dokka")
+    from(dokkaTask.outputDirectory)
+    dependsOn(dokkaTask)
+    dependsOn("build")
     archiveClassifier.value("javadoc")
 }
 

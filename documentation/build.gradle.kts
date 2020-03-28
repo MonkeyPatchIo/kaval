@@ -17,18 +17,13 @@ dependencies {
     orchidImplementation(Libs.Orchid.core)
     orchidRuntimeOnly(Libs.Orchid.admin)
     orchidRuntimeOnly(Libs.Orchid.docs)
-    orchidRuntimeOnly(Libs.Orchid.sourceDocs)
     orchidRuntimeOnly(Libs.Orchid.github)
 }
 
 orchid {
-    baseUrl = "https://MonkeyPatchIo.github.io/kaval/"
-//    baseUrl = "http://localhost:8080"
+    baseUrl = "https://monkeypatch.io/kaval/"
 
     environment = if (findProperty("env") == "prod") "prod" else "debug"
-    args = listOf("--experimentalSourceDoc")
 
-    githubToken =
-        if (hasProperty("github_token")) property("github_token").toString()
-        else System.getenv("GITHUB_TOKEN")
+    githubToken = System.getenv("GITHUB_TOKEN")
 }
