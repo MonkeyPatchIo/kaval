@@ -10,7 +10,7 @@ object Libs {
     const val orchid = "0.19.0"
 
     object Kotest {
-        private const val version = "4.0.1"
+        private const val version = "4.0.2"
         const val assertionsMpp = "io.kotest:kotest-assertions:$version"
         const val assertionsJvm = "io.kotest:kotest-assertions-core-jvm:$version"
         const val propertyJvm = "io.kotest:kotest-property-jvm:$version"
