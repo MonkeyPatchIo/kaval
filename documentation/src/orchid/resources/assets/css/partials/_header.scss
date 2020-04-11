@@ -16,8 +16,9 @@ body > header > .logo {
   figure {
     margin: 0;
     display: flex;
-    max-width: 10em;
+    max-width: 10rem;
     align-items: center;
+    flex-wrap: wrap;
 
     img {
       width: 100%;
