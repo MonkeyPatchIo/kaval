@@ -39,7 +39,7 @@ release {
     tagCommitMessage = ":bookmark: release new version: "
     newVersionCommitMessage = ":bookmark: prepare new version: "
 
-    with (propertyMissing("git") as GitAdapter.GitConfig) {
+    with(propertyMissing("git") as GitAdapter.GitConfig) {
         pushToRemote = false
     }
 }

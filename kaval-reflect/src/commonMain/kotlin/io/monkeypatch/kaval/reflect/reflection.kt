@@ -2,7 +2,6 @@ package io.monkeypatch.kaval.reflect
 
 import io.monkeypatch.kaval.core.Validator
 import io.monkeypatch.kaval.core.field
-import kotlin.reflect.KClass
 import kotlin.reflect.KProperty
 import kotlin.reflect.KProperty1
 
@@ -16,7 +15,6 @@ import kotlin.reflect.KProperty1
  */
 fun <H, C> property(property: KProperty<C>, childValidator: () -> Validator<C>): Validator<H> =
     field(property.name, { property.getter.call(it) }, childValidator)
-
 
 /**
  * Provide an easy DSL to create a validator based on properties

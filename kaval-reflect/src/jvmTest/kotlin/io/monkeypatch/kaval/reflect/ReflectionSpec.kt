@@ -34,7 +34,6 @@ class ReflectionSpec : DescribeSpec() {
             }
         }
 
-
         describe("dsl") {
             val validator: Validator<MyPojo> = reflectValidator {
                 MyPojo::name { notBlank }

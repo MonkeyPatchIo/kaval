@@ -1,8 +1,8 @@
 package io.monkeypatch.kaval.core.validator
 
 import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.string.startWith
 import io.kotest.matchers.should
+import io.kotest.matchers.string.startWith
 import io.monkeypatch.kaval.core.Validator
 import io.monkeypatch.kaval.core.validator.Collections.allEntriesValid
 import io.monkeypatch.kaval.core.validator.Collections.allKeysValid

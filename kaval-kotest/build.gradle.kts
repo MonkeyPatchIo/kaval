@@ -50,7 +50,6 @@ kotlin {
     }
 }
 
-
 tasks {
     dokka {
         outputFormat = "javadoc"
@@ -80,7 +79,7 @@ publishing {
 
 // Publishing
 
-//// Add a Javadoc JAR to each publication as required by Maven Central
+// // Add a Javadoc JAR to each publication as required by Maven Central
 
 val javadocJar by tasks.creating(Jar::class) {
     val dokkaTask = tasks.getByName<DokkaTask>("dokka")
@@ -96,7 +95,7 @@ publishing {
     }
 }
 
-//// The root publication also needs a sources JAR as it does not have one by default
+// // The root publication also needs a sources JAR as it does not have one by default
 
 val sourcesJar by tasks.creating(Jar::class) {
     archiveClassifier.value("sources")
@@ -104,7 +103,7 @@ val sourcesJar by tasks.creating(Jar::class) {
 
 publishing.publications.withType<MavenPublication>().getByName("kotlinMultiplatform").artifact(sourcesJar)
 
-//// Customize the POMs adding the content required by Maven Central
+// // Customize the POMs adding the content required by Maven Central
 
 fun customizeForMavenCentral(pom: org.gradle.api.publish.maven.MavenPom) = pom.withXml {
     fun groovy.util.Node.add(key: String, value: String) {
