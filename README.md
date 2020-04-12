@@ -42,14 +42,11 @@ We can validate the `Address` with these constraints:
 
 ```kotlin
 val addressValidator: Validator<Address> =
-    property<Address, String>(Address::line1) {
-      notBlank and maxLength(255)
-    } and property(Address::line2) {
-      maxLength(255)
-    } and property(Address::zipCode) {
-      greaterThan(0)
-    } and property(Address::city) {
-      notBlank
+    reflectValidator {
+        Address::line1 { notBlank and maxLength(255) }
+        Address::line2 { maxLength(255) }
+        Address::zipCode { greaterThan(0) }
+        Address::city { notBlank }
     }
 ```
 
@@ -61,12 +58,10 @@ And the `User` with these constraints:
 
 ```kotlin
 val userValidator: Validator<User> =
-    property<User, String>(User::firstName) {
-        notBlank and maxLength(128)
-    } and property(User::lastName) {
-        notBlank and maxLength(255)
-    } and property(User::address) {
-        nullOr { addressValidator }
+    reflectValidator {
+        User::firstName { notBlank and maxLength(128) }
+        User::lastName { notBlank and maxLength(255) }
+        User::address { nullOr { Address.validator } }
     }
 ```
 
