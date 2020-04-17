@@ -1,7 +1,7 @@
 object Libs {
 
     // Plugins
-    const val kotlinVersion = "1.3.71"
+    const val kotlinVersion = "1.3.72"
     const val dokkaVersion = "0.10.1"
     const val testLogger = "2.0.0"
     const val kotlinter = "2.3.2"
