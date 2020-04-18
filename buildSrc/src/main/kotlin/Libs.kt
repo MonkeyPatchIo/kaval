@@ -8,6 +8,7 @@ object Libs {
     const val release = "2.8.1"
     const val versions = "0.28.0"
     const val orchid = "0.20.0"
+    const val bintray = "1.8.5"
 
     object Kotest {
         private const val version = "4.0.2"

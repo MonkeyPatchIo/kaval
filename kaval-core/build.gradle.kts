@@ -1,3 +1,4 @@
+import com.jfrog.bintray.gradle.BintrayExtension
 import groovy.util.Node
 import org.jetbrains.dokka.gradle.DokkaTask
 
@@ -8,6 +9,7 @@ plugins {
     id("java-library")
     id("signing")
     id("org.jetbrains.dokka")
+    id("com.jfrog.bintray")
 
     id("org.jmailen.kotlinter")
     id("com.adarshr.test-logger")
@@ -88,8 +90,7 @@ publishing {
 
 // Publishing
 
-// // Add a Javadoc JAR to each publication as required by Maven Central
-
+// Add a Javadoc JAR to each publication as required by Maven Central
 val javadocJar by tasks.creating(Jar::class) {
     val dokkaTask = tasks.getByName<DokkaTask>("dokka")
     from(dokkaTask.outputDirectory)
@@ -104,16 +105,14 @@ publishing {
     }
 }
 
-// // The root publication also needs a sources JAR as it does not have one by default
-
+// The root publication also needs a source JAR as it does not have one by default
 val sourcesJar by tasks.creating(Jar::class) {
     archiveClassifier.value("sources")
 }
 
 publishing.publications.withType<MavenPublication>().getByName("kotlinMultiplatform").artifact(sourcesJar)
 
-// // Customize the POMs adding the content required by Maven Central
-
+// Customize the POMs adding the content required by Maven Central
 fun customizeForMavenCentral(pom: org.gradle.api.publish.maven.MavenPom) = pom.withXml {
     fun Node.add(key: String, value: String) {
         appendNode(key).setValue(value)
@@ -162,9 +161,42 @@ publishing {
 }
 
 // Sign the publications:
-
 publishing {
     publications.withType<MavenPublication>().all {
         signing.sign(this@all)
     }
+}
+
+// Bintray
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_KEY")
+
+    setPublications("js", "jvm", "kotlinMultiplatform", "metadata")
+    publish = true
+    override = true
+
+    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+        repo = "kaval"
+        name = "kaval"
+        userOrg = "monkeypatchio"
+        websiteUrl = "https://monkeypatch.io/kaval/"
+        githubRepo = "MonkeyPatchIo/kaval"
+        vcsUrl = "https://github.com/MonkeyPatchIo/kaval"
+        setLicenses("Apache-2.0")
+        setLabels("kotlin", "validation")
+
+        version(delegateClosureOf<BintrayExtension.VersionConfig> {
+            name = "${project.version}"
+            desc = "${project.description}"
+            vcsTag = "${project.version}"
+            gpg(delegateClosureOf<BintrayExtension.GpgConfig> {
+                sign = true
+            })
+            mavenCentralSync(delegateClosureOf<BintrayExtension.MavenCentralSyncConfig> {
+                user = System.getenv("NEXUS_USERNAME")
+                password = System.getenv("NEXUS_PASSWORD")
+            })
+        })
+    })
 }

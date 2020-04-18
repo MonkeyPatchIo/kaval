@@ -1,3 +1,4 @@
+
 import net.researchgate.release.GitAdapter
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -11,6 +12,7 @@ plugins {
     id("org.jmailen.kotlinter") version Libs.kotlinter
     id("com.adarshr.test-logger") version Libs.testLogger
     id("net.researchgate.release") version Libs.release
+    id("com.jfrog.bintray") version Libs.bintray
 }
 
 repositories {
