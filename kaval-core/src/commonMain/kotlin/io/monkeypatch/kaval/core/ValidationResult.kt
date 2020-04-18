@@ -53,6 +53,12 @@ object Valid : ValidationResult() {
 data class Invalid internal constructor(val reasons: List<ValidationIssue>) : ValidationResult() {
 
     /**
+     * Issues
+     */
+    val issues: List<ValidationIssue>
+        get() = reasons
+
+    /**
      * Build failed validation with one issue on the element
      *
      * @param reason the failure explanation
