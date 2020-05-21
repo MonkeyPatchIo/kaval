@@ -80,14 +80,14 @@ class ResultMatchersSpec : DescribeSpec() {
             it("should return a failure when valid") {
                 val result = matcher.test(Valid)
                 result.passed() shouldBe false
-                result.failureMessage() shouldBe "Valid should be Invalid with reason $reason"
-                result.negatedFailureMessage() shouldBe "Valid should not be Invalid with reason $reason"
+                result.failureMessage() shouldBe "Valid should be Invalid with reason '$reason'"
+                result.negatedFailureMessage() shouldBe "Valid should not be Invalid with reason '$reason'"
             }
             it("should return a failure when invalid without reason") {
                 val result = matcher.test(Invalid("_$reason"))
                 result.passed() shouldBe false
-                result.failureMessage() shouldBe "Invalid: _$reason should be Invalid with reason $reason"
-                result.negatedFailureMessage() shouldBe "Invalid: _$reason should not be Invalid with reason $reason"
+                result.failureMessage() shouldBe "Invalid: _$reason should be Invalid with reason '$reason'"
+                result.negatedFailureMessage() shouldBe "Invalid: _$reason should not be Invalid with reason '$reason'"
             }
         }
 

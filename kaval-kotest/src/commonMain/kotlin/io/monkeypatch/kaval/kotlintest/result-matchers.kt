@@ -62,8 +62,8 @@ fun beInvalidWithReason(reason: String) = object : Matcher<ValidationResult> {
         MatcherResult(
             value is Invalid &&
                 value.reasons.any { it.message == reason },
-            "$value should be Invalid with reason $reason",
-            "$value should not be Invalid with reason $reason"
+            "$value should be Invalid with reason '$reason'",
+            "$value should not be Invalid with reason '$reason'"
         )
 }
 
