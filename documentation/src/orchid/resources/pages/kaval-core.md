@@ -153,6 +153,11 @@ Into the object `io.monkeypatch.kaval.core.validator.Collections`
 - `atLeastOneKeyValid(keyValidator: () -> Validator<K>)`: validate a `Map<K,V>` when at least one key is valid. Invalid if empty.
 - `atLeastOneEntryValid(entryValidator: () -> Validator<Map.Entry<K, V>>)`: validate a `Map<K,V>` when at least one entry is valid. Invalid if empty.
 
+## Tuples
+
+- `pair(tValidator: Validator<T>, uValidator: Validator<U>)`: create a validator for a `Pair<T, U>`
+- `triple(tValidator: Validator<T>, uValidator: Validator<U>, wValidator: Validator<W>)`: create a validator for a `Triple<T, U, W>`
+
 ## Create your Validator
 
 You can of course combine already existing validators.
