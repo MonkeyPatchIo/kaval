@@ -134,3 +134,70 @@ sealed class HttpStatus {
     }
 }
 ```
+
+### Using Arrow Validated
+
+If you import the `io.monkeypatch.kaval.arrow.KavalValidated.check` extension, you can return an Arrow `Validated`
+
+```kotlin
+import io.monkeypatch.kaval.arrow.KavalValidated.check
+
+val addressOk = Address(
+    line1 = "42 avenue Monoid",
+    line2 = "Semigroup block",
+    zipCode = 42000,
+    city = "LambdaCity"
+)
+
+val addressKo = Address(
+    line1 = " ".repeat(500),
+    line2 = "",
+    zipCode = -1,
+    city = ""
+)
+
+println(addressOk.check(Address.validator))
+// Valid(Address(line1=42 avenue Monoid, line2=Semigroup block, zipCode=42000, city=LambdaCity))
+
+println(addressKo.check(Address.validator))
+// Invalid(
+//   NonEmptyList([
+//     [line1] requires to be not blank,
+//     [line1.length] requires to be lower or equals to 255, got 500,
+//     [zipCode] requires to be greater than 0, got -1,
+//     [city] requires to be not blanks
+//   ])
+// )
+```
+
+### Using Arrow Either
+
+If you import the `io.monkeypatch.kaval.arrow.KavalEither.check` extension, you can return an Arrow `Either`
+
+```kotlin
+import io.monkeypatch.kaval.arrow.KavalEither.check
+
+val addressOk = Address(
+    line1 = "42 avenue Monoid",
+    line2 = "Semigroup block",
+    zipCode = 42000,
+    city = "LambdaCity"
+)
+
+val addressKo = Address(
+    line1 = " ".repeat(500),
+    line2 = "",
+    zipCode = -1,
+    city = ""
+)
+
+println(addressOk.check(Address.validator))
+// Right(Address(line1=42 avenue Monoid, line2=Semigroup block, zipCode=42000, city=LambdaCity))
+
+println(addressKo.check(Address.validator))
+// Left(InvalidException(invalid=Invalid:
+//  - [line1] requires to be not blank
+//  - [line1.length] requires to be lower or equals to 255, got 500
+//  - [zipCode] requires to be greater than 0, got -1
+//  - [city] requires to be not blank))
+```

@@ -6,7 +6,7 @@
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 
-This is a Kotlin multiplatform library to validate your model.
+This is a Kotlin multi-platform library to validate your model.
 
 ## Why
 
@@ -94,4 +94,5 @@ println(result)
 * [kaval-core](./kaval-core): the core, start here
 * [kaval-reflect](./kaval-reflect): add a validator using Kotlin reflection
 * [kaval-kotest](./kaval-kotest): add custom matchers for [kotest](https://github.com/kotest/kotest)
+* [kaval-arrow](./kaval-arrow): integration with the awesome [Arrow](https://arrow-kt.io) library
 * [some samples](./samples/src/main/kotlin)

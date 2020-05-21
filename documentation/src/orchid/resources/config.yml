@@ -29,7 +29,10 @@ theme:
       icon: fas fa-puzzle-piece
     - type: page
       itemId: 'Kaval Kotest'
-      icon: fas fa-puzzle-piece
+      icon: fas fa-vial
+    - type: page
+      itemId: 'Kaval Arrow'
+      icon: fas fa-location-arrow
     # Open Source
     - type: separator
       title: Open Source

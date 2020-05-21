@@ -11,6 +11,10 @@ dependencies {
     // Kaval
     implementation(project(":kaval-core"))
     implementation(project(":kaval-reflect"))
+    implementation(project(":kaval-arrow"))
+
+    // Arrow
+    implementation(Libs.Arrow.core)
 
     // Test
     testImplementation(project(":kaval-kotest"))
