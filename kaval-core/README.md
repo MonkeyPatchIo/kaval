@@ -84,7 +84,7 @@ input| `v1 and v2` | `v1 andThen v2` | `v1 or v2`
 
 Into the package `io.monkeypatch.kaval.core`
 
-- `alwaysValid`: an always valid validator, could be useful in test, or when folding a list of Validators.
+- `alwaysValid`: an always valid validator, could be useful in test, or when folding a list of validators.
 - `alwaysInvalid(reason: String)`: an always invalid validator, could be useful in test, or when folding a list of Validators.
 - `predicate(predicate: (T) -> Boolean, reason: (T) -> String)`: build a validator based on a predicate. Useful to create your own validator.
 - `notNull()`: valid when element is not null.

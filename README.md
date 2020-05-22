@@ -60,7 +60,7 @@ And the `User` with these constraints:
 val userValidator: Validator<User> =
     reflectValidator {
         User::firstName { notBlank and maxLength(128) }
-        User::lastName { notBlank and maxLength(255) }
+        User::lastName { maxLength(255) }
         User::address { nullOr { Address.validator } }
     }
 ```
@@ -79,7 +79,7 @@ val user = User(
    )
 )
 
-val result: ValidationResult<User> = userValidator.validate(user)
+val result: ValidationResult = userValidator.validate(user)
 println(result)
 // Invalid:
 //  - [firstName] requires to be not blank
