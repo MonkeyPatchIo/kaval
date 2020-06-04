@@ -7,7 +7,7 @@ object Libs {
     const val kotlinter = "2.3.2"
     const val release = "2.8.1"
     const val versions = "0.28.0"
-    const val orchid = "0.20.0"
+    const val orchid = "0.21.0"
 
     object Arrow {
         private const val version = "0.10.5"
