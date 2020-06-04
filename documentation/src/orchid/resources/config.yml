@@ -42,9 +42,9 @@ theme:
     - type: page
       itemId: 'Changelog'
       icon: fas fa-history
-    - type: page
-      itemId: 'Contributors'
-      icon: fas fa-hands-helping
+#    - type: page
+#      itemId: 'Contributors'
+#      icon: fas fa-hands-helping
     - type: link
       title: Github
       url: 'https://github.com/MonkeyPatchIo/kaval'
