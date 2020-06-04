@@ -3,9 +3,9 @@ package io.monkeypatch.kaval.arrow.validator
 import arrow.core.Either
 import arrow.core.Ior
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.field
 import io.monkeypatch.kaval.core.predicate
-import io.monkeypatch.kaval.core.validator
 import io.monkeypatch.kaval.core.whenIsInstance
 
 /**
@@ -94,12 +94,12 @@ object Iors {
      * @return the validator
      */
     fun <L, R> validator(leftValidator: () -> Validator<L>, rightValidator: () -> Validator<R>): Validator<Ior<L, R>> =
-        validator { ior ->
+        { ior ->
             ior.fold(
-                { a -> leftValidator().validate(a) },
-                { b -> rightValidator().validate(b) },
+                { a -> leftValidator()(a) },
+                { b -> rightValidator()(b) },
                 { a, b ->
-                    leftValidator().validate(a) concat rightValidator().validate(b)
+                    leftValidator()(a) concat rightValidator()(b)
                 }
             )
         }

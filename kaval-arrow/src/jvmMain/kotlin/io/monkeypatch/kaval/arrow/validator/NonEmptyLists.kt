@@ -4,7 +4,6 @@ import arrow.core.Nel
 import arrow.core.NonEmptyList
 import io.monkeypatch.kaval.core.Validator
 import io.monkeypatch.kaval.core.field
-import io.monkeypatch.kaval.core.validator
 import io.monkeypatch.kaval.core.validator.Collections
 import io.monkeypatch.kaval.core.validator.Comparables
 
@@ -52,8 +51,8 @@ object NonEmptyLists {
      * @return the nel validator
      */
     fun <T> allValid(elementValidator: () -> Validator<T>): Validator<Nel<T>> =
-        validator { nel ->
-            Collections.allValid(elementValidator).validate(nel.asIterable())
+        { nel ->
+            Collections.allValid(elementValidator)(nel.asIterable())
         }
 
     /**
@@ -65,8 +64,8 @@ object NonEmptyLists {
      * @return the nel validator
      */
     fun <T> atLeastOneValid(elementValidator: () -> Validator<T>): Validator<Nel<T>> =
-        validator { nel ->
-            Collections.atLeastOneValid(elementValidator).validate(nel.asIterable())
+        { nel ->
+            Collections.atLeastOneValid(elementValidator)(nel.asIterable())
         }
 
     private fun <T> Nel<T>.asIterable(): Iterable<T> {

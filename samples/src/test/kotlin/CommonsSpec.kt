@@ -10,19 +10,19 @@ class CommonsSpec : DescribeSpec() {
         describe("plopValidator") {
 
             it("should accept null") {
-                val result = plopValidator.validate(null)
+                val result = plopValidator(null)
                 result should beValid()
             }
 
             it("should reject foobar") {
-                val result = plopValidator.validate("foobar")
+                val result = plopValidator("foobar")
                 result should beInvalidWithReason(
                     "requires matching 'pl.*p'"
                 )
             }
 
             it("should accept plop") {
-                val result = plopValidator.validate("plop")
+                val result = plopValidator("plop")
                 result should beValid()
             }
         }

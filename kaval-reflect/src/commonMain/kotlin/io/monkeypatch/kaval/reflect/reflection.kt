@@ -1,6 +1,7 @@
 package io.monkeypatch.kaval.reflect
 
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.field
 import kotlin.reflect.KProperty
 import kotlin.reflect.KProperty1
@@ -45,6 +46,6 @@ class ReflectValidatorDsl<T> {
      */
     fun build(): Validator<T> =
         propertyValidators.reduce { acc, validator ->
-            acc.and(validator)
+            acc and validator
         }
 }

@@ -2,9 +2,9 @@ package io.monkeypatch.kaval.arrow.validator
 
 import arrow.core.Either
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.field
 import io.monkeypatch.kaval.core.predicate
-import io.monkeypatch.kaval.core.validator
 import io.monkeypatch.kaval.core.whenIsInstance
 
 /**
@@ -71,10 +71,10 @@ object Eithers {
         leftValidator: () -> Validator<L>,
         rightValidator: () -> Validator<R>
     ): Validator<Either<L, R>> =
-        validator { either ->
+        { either ->
             either.fold(
-                { leftValidator().validate(it) },
-                { rightValidator().validate(it) }
+                { leftValidator()(it) },
+                { rightValidator()(it) }
             )
         }
 }

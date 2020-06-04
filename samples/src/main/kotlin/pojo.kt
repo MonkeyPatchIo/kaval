@@ -1,4 +1,5 @@
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.nullOr
 import io.monkeypatch.kaval.core.validator.Comparables.greaterThan
 import io.monkeypatch.kaval.core.validator.Strings.maxLength

@@ -8,7 +8,7 @@ package io.monkeypatch.kaval.core
  * @return an always valid validator
  */
 fun <T> alwaysValid(): Validator<T> =
-    validator { Valid }
+    { Valid }
 
 /**
  * An always invalid validator
@@ -19,7 +19,7 @@ fun <T> alwaysValid(): Validator<T> =
  * @return an always invalid validator
  */
 fun <T> alwaysInvalid(reason: String): Validator<T> =
-    validator { Invalid(reason) }
+    { Invalid(reason) }
 
 /**
  * Validate an element with a predicate
@@ -30,7 +30,7 @@ fun <T> alwaysInvalid(reason: String): Validator<T> =
  * @return a validator based on a predicate
  */
 fun <T> predicate(predicate: (T) -> Boolean, reason: (T) -> String): Validator<T> =
-    validator {
+    {
         if (predicate(it)) Valid
         else Invalid(reason(it))
     }
@@ -89,8 +89,8 @@ fun <T> notContainsBy(iter: Iterable<T>): Validator<T> =
  * @return a validator of a nullable element
  */
 fun <T> nullOr(validator: () -> Validator<T>): Validator<T?> =
-    validator { t ->
-        if (t != null) validator().validate(t)
+    { t ->
+        if (t != null) validator()(t)
         else Valid
     }
 
@@ -104,15 +104,15 @@ fun <T> nullOr(validator: () -> Validator<T>): Validator<T?> =
  * @return a validator that focus on a field of an element
  */
 fun <H, C> field(fieldName: String, fieldExtractor: (H) -> C, fieldValidator: () -> Validator<C>): Validator<H> =
-    validator { host: H ->
+    { host: H ->
         val child = fieldExtractor(host)
-        val childValidation = fieldValidator().validate(child)
+        val childValidation = fieldValidator()(child)
         childValidation.mapReason { reason ->
             when (reason) {
-                is FieldValidationIssue ->
-                    FieldValidationIssue("$fieldName.${reason.field}", reason.message)
-                is BaseValidationIssue ->
-                    FieldValidationIssue(fieldName, reason.message)
+                is ValidationIssue.FieldValidationIssue ->
+                    ValidationIssue.FieldValidationIssue("$fieldName.${reason.field}", reason.message)
+                is ValidationIssue.BaseValidationIssue ->
+                    ValidationIssue.FieldValidationIssue(fieldName, reason.message)
             }
         }
     }
@@ -158,14 +158,14 @@ inline fun <T, reified U : T> isInstance(): Validator<T> =
  * @return a validator that check if the element is instance of type `U`, then use the uValidator, otherwise it's `Valid`
  */
 inline fun <T, reified U : T> whenIsInstance(crossinline uValidator: () -> Validator<U>): Validator<T> =
-    validator { t ->
+    { t ->
         if (t !is U) Valid
-        else uValidator().validate(t).mapReason { reason ->
+        else uValidator()(t).mapReason { reason ->
             when (reason) {
-                is FieldValidationIssue ->
-                    FieldValidationIssue(reason.field, reason.message)
-                is BaseValidationIssue ->
-                    BaseValidationIssue(reason.message)
+                is ValidationIssue.FieldValidationIssue ->
+                    ValidationIssue.FieldValidationIssue(reason.field, reason.message)
+                is ValidationIssue.BaseValidationIssue ->
+                    ValidationIssue.BaseValidationIssue(reason.message)
             }
         }
     }

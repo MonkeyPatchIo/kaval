@@ -3,21 +3,23 @@ package io.monkeypatch.kaval.core
 /**
  * Check an element is valid (Predicate)
  *
+ * @param validator the validator
  * @param T the element type
  * @return `true` if valid, `false` otherwise
  */
 fun <T> T.isValid(validator: Validator<T>): Boolean =
-    validator.validate(this) == Valid
+    validator(this) == Valid
 
 /**
  * Check an element is valid, throw an [InvalidException] if invalid
  *
+ * @param validator the validator
  * @param T the element type
  * @throws InvalidException when element is invalid
  * @return the element if valid, otherwise throw an [InvalidException]
  */
 fun <T> T.isValidOrThrow(validator: Validator<T>): T =
-    when (val result = validator.validate(this)) {
+    when (val result = validator(this)) {
         is Valid -> this
         is Invalid -> throw InvalidException(result)
     }

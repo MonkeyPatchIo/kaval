@@ -50,7 +50,7 @@ class CommonsSpec : DescribeSpec() {
             it("alwaysValid should always be Valid") {
                 checkAll(anyNullable) { a ->
                     val validator = alwaysValid<Any?>()
-                    validator.validate(a) should beValid()
+                    validator(a) should beValid()
                 }
             }
         }
@@ -60,7 +60,7 @@ class CommonsSpec : DescribeSpec() {
                 checkAll(anyNullable) { a ->
                     val reason = "plaf!"
                     val validator = alwaysInvalid<Any?>(reason)
-                    validator.validate(a) should beInvalidWithReason(
+                    validator(a) should beInvalidWithReason(
                         reason
                     )
                 }
@@ -73,7 +73,7 @@ class CommonsSpec : DescribeSpec() {
             it("predicate should be valid if true") {
                 val validator = predicate<Any?>({ true }) { reason }
                 checkAll(anyNullable) { a ->
-                    val result = validator.validate(a)
+                    val result = validator(a)
 
                     result should beValid()
                 }
@@ -82,7 +82,7 @@ class CommonsSpec : DescribeSpec() {
             it("predicate should be valid if false") {
                 val validator = predicate<Any?>({ false }) { reason }
                 checkAll(any) { a ->
-                    val result = validator.validate(a)
+                    val result = validator(a)
 
                     result should beInvalidWithReason(
                         reason
@@ -97,7 +97,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("containsBy should be valid when into the iterable") {
                 checkAll(Arb.element(iterable)) { i ->
-                    val result = validator.validate(i)
+                    val result = validator(i)
 
                     result should beValid()
                 }
@@ -105,7 +105,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("containsBy should be valid when not into the iterable") {
                 checkAll(Arb.element(iterable)) { i ->
-                    val result = validator.validate(i + 1)
+                    val result = validator(i + 1)
                     result should beInvalidWithReason("requires to be in {1, 3, 5, 7, ...}, got ${i + 1}")
                 }
             }
@@ -117,7 +117,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("notContainsBy should be valid when not into the iterable") {
                 checkAll(Arb.element(iterable)) { i ->
-                    val result = validator.validate(i + 1)
+                    val result = validator(i + 1)
 
                     result should beValid()
                 }
@@ -125,7 +125,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("notContainsBy should be valid when into the iterable") {
                 checkAll(Arb.element(iterable)) { i ->
-                    val result = validator.validate(i)
+                    val result = validator(i)
                     result should beInvalidWithReason("requires not to be in {1, 3, 5, 7, ...}, got $i")
                 }
             }
@@ -136,14 +136,14 @@ class CommonsSpec : DescribeSpec() {
 
             it("notNull should be valid if not null") {
                 checkAll(any) { a ->
-                    val result = validator.validate(a)
+                    val result = validator(a)
 
                     result should beValid()
                 }
             }
 
             it("notNull should be invalid if null") {
-                val result = validator.validate(null)
+                val result = validator(null)
 
                 result should beInvalid()
             }
@@ -167,7 +167,7 @@ class CommonsSpec : DescribeSpec() {
 
                 it("$name should be ${if (isValid) "valid" else "invalid"}") {
                     checkAll(gen) { a ->
-                        val result = validator.validate(a)
+                        val result = validator(a)
 
                         if (isValid) result should beValid()
                         else result should beInvalidWithReason(
@@ -185,7 +185,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("field should reject if field invalid") {
                 val pojo = MyPojo("", 42)
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
                 result should beInvalidWithReason(
                     "requires to be not blank"
                 )
@@ -193,7 +193,7 @@ class CommonsSpec : DescribeSpec() {
 
             it("field should accept if field valid") {
                 val pojo = MyPojo("test", 42)
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
                 result should beValid()
             }
         }
@@ -203,14 +203,14 @@ class CommonsSpec : DescribeSpec() {
                 isInstance<UpperInterface, BaseImplementation>()
 
             it("isInstance should reject if instance invalid") {
-                val result = validator.validate(
+                val result = validator(
                     AnotherImplementation
                 )
                 result should beInvalidWithReason("requires to be a ${BaseImplementation::class.java}")
             }
 
             it("isInstance should accept if instance valid") {
-                val result = validator.validate(
+                val result = validator(
                     BaseImplementation
                 )
                 result should beValid()
@@ -224,14 +224,14 @@ class CommonsSpec : DescribeSpec() {
                 whenIsInstance { invalid }
 
             it("whenIsInstance should accept if not instance") {
-                val result = validator.validate(
+                val result = validator(
                     AnotherImplementation
                 )
                 result should beValid()
             }
 
             it("whenIsInstance should reject if instance because of validator") {
-                val result = validator.validate(
+                val result = validator(
                     BaseImplementation
                 )
                 result should beInvalidWithReason(

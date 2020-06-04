@@ -1,14 +1,14 @@
 package io.monkeypatch.kaval.core.validator
 
-import io.monkeypatch.kaval.core.BaseValidationIssue
-import io.monkeypatch.kaval.core.FieldValidationIssue
 import io.monkeypatch.kaval.core.Invalid
 import io.monkeypatch.kaval.core.Valid
+import io.monkeypatch.kaval.core.ValidationIssue.BaseValidationIssue
+import io.monkeypatch.kaval.core.ValidationIssue.FieldValidationIssue
 import io.monkeypatch.kaval.core.ValidationResult
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.field
 import io.monkeypatch.kaval.core.predicate
-import io.monkeypatch.kaval.core.validator
 import io.monkeypatch.kaval.core.validator.Comparables.equalsTo
 import io.monkeypatch.kaval.core.validator.Comparables.greaterOrEqualTo
 import io.monkeypatch.kaval.core.validator.Comparables.lowerOrEqualTo
@@ -80,10 +80,10 @@ object Collections {
      * @return the iterable validator
      */
     fun <T> allValid(elementValidator: () -> Validator<T>): Validator<Iterable<T>> =
-        validator { iterable ->
+        { iterable ->
             val validator = elementValidator()
             iterable.mapIndexed { index, elt ->
-                val result = validator.validate(elt)
+                val result = validator(elt)
                 // Use index as a field name
                 result.mapReason { reason ->
                     val field = "$index" + if (reason is FieldValidationIssue) ".${reason.field}" else ""
@@ -101,7 +101,7 @@ object Collections {
      * @return the iterable validator
      */
     fun <T> atLeastOneValid(elementValidator: () -> Validator<T>): Validator<Iterable<T>> =
-        validator { it.atLeastOneValid("element", "elements", elementValidator()) }
+        { it.atLeastOneValid("element", "elements", elementValidator()) }
 
     /**
      * Validate a [Map] if all values are valid
@@ -112,10 +112,10 @@ object Collections {
      * @return the map validator
      */
     fun <K, V> allValuesValid(valueValidator: () -> Validator<V>): Validator<Map<K, V>> =
-        validator { map ->
+        { map ->
             val validator = valueValidator()
             map.map { (key, value) ->
-                validator.validate(value)
+                validator(value)
                     // Handle key as a field name
                     .mapReason { reason ->
                         val field = "$key" + if (reason is FieldValidationIssue) ".${reason.field}" else ""
@@ -133,10 +133,10 @@ object Collections {
      * @return the map validator
      */
     fun <K, V> allKeysValid(keyValidator: () -> Validator<K>): Validator<Map<K, V>> =
-        validator { map ->
+        { map ->
             val validator = keyValidator()
             map.keys.map { key ->
-                validator.validate(key)
+                validator(key)
                     // Handle key as a field name
                     .mapReason { reason ->
                         val field = "$key" + if (reason is FieldValidationIssue) ".${reason.field}" else ""
@@ -170,10 +170,10 @@ object Collections {
      * @return the map validator
      */
     fun <K, V> allEntriesValid(entryValidator: () -> Validator<Map.Entry<K, V>>): Validator<Map<K, V>> =
-        validator { map ->
+        { map ->
             val validator = entryValidator()
             map.map { entry ->
-                validator.validate(entry)
+                validator(entry)
                     // Handle key as a field name
                     .mapReason { reason ->
                         val field = "${entry.key}" + if (reason is FieldValidationIssue) ".${reason.field}" else ""
@@ -192,7 +192,7 @@ object Collections {
      * @return the iterable validator
      */
     fun <K, V> atLeastOneValueValid(valueValidator: () -> Validator<V>): Validator<Map<K, V>> =
-        validator { map ->
+        { map ->
             map.values.atLeastOneValid("value", "values", valueValidator())
                 .mapReason { reason ->
                     when (reason) {
@@ -212,7 +212,7 @@ object Collections {
      * @return the iterable validator
      */
     fun <K, V> atLeastOneKeyValid(keyValidator: () -> Validator<K>): Validator<Map<K, V>> =
-        validator { map ->
+        { map ->
             map.keys.atLeastOneValid("key", "keys", keyValidator())
                 .mapReason { reason ->
                     when (reason) {
@@ -232,7 +232,7 @@ object Collections {
      * @return the iterable validator
      */
     fun <K, V> atLeastOneEntryValid(entryValidator: () -> Validator<Map.Entry<K, V>>): Validator<Map<K, V>> =
-        validator { map ->
+        { map ->
             map.entries.atLeastOneValid("entry", "entries", entryValidator())
                 .mapReason { reason ->
                     when (reason) {
@@ -251,7 +251,7 @@ object Collections {
         val iterator = iterator()
         var invalid: ValidationResult = Valid
         for (elt in iterator) {
-            val eltResult = validator.validate(elt)
+            val eltResult = validator(elt)
             if (eltResult == Valid) return Valid
 
             invalid = invalid concat eltResult

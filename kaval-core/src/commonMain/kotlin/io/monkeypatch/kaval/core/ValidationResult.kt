@@ -16,11 +16,13 @@ sealed class ValidationResult {
         when (this) {
             is Valid -> Valid
             is Invalid -> Invalid(
-                reasons.map { mapper(it) })
+                reasons.map { mapper(it) }
+            )
         }
 
     /**
      * Merge two validation result
+     *
      * Notes:
      * - this method is symmetric and associative
      * - this may generate duplicated issues
@@ -47,6 +49,7 @@ object Valid : ValidationResult() {
 
 /**
  * A failed validation
+ * Note: use alternate constructor if you need to create an [Invalid]
  *
  * @param reasons list (not empty) with all issues
  */
@@ -54,6 +57,7 @@ data class Invalid internal constructor(val reasons: List<ValidationIssue>) : Va
 
     /**
      * Issues
+     * Note: just expose publicly the internal reasons
      */
     val issues: List<ValidationIssue>
         get() = reasons
@@ -63,7 +67,7 @@ data class Invalid internal constructor(val reasons: List<ValidationIssue>) : Va
      *
      * @param reason the failure explanation
      */
-    constructor(reason: String) : this(listOf(BaseValidationIssue(reason)))
+    constructor(reason: String) : this(listOf(ValidationIssue.BaseValidationIssue(reason)))
 
     /**
      * Build failed validation with one issue on a field of an element
@@ -71,7 +75,7 @@ data class Invalid internal constructor(val reasons: List<ValidationIssue>) : Va
      * @param field the field name
      * @param reason the failure explanation
      */
-    constructor(field: String, reason: String) : this(listOf(FieldValidationIssue(field, reason)))
+    constructor(field: String, reason: String) : this(listOf(ValidationIssue.FieldValidationIssue(field, reason)))
 
     init {
         require(reasons.isNotEmpty()) { "Invalid requires at least one reason" }
@@ -88,25 +92,25 @@ data class Invalid internal constructor(val reasons: List<ValidationIssue>) : Va
  */
 sealed class ValidationIssue {
     abstract val message: String
-}
 
-/**
- * Represent one validation issue on an Element
- *
- * @param message an explanation
- */
-data class BaseValidationIssue(override val message: String) : ValidationIssue() {
-    override fun toString(): String =
-        message
-}
+    /**
+     * Represent one validation issue on an Element
+     *
+     * @param message an explanation
+     */
+    data class BaseValidationIssue(override val message: String) : ValidationIssue() {
+        override fun toString(): String =
+            message
+    }
 
-/**
- * Represent one validation issue on a field of an Element
- *
- * @param field the field
- * @param message an explanation
- */
-data class FieldValidationIssue(val field: String, override val message: String) : ValidationIssue() {
-    override fun toString(): String =
-        "[$field] $message"
+    /**
+     * Represent one validation issue on a field of an Element
+     *
+     * @param field the field
+     * @param message an explanation
+     */
+    data class FieldValidationIssue(val field: String, override val message: String) : ValidationIssue() {
+        override fun toString(): String =
+            "[$field] $message"
+    }
 }

@@ -14,12 +14,12 @@ class OptionsSpec : DescribeSpec() {
             val validator = Options.isNone<String>()
 
             it("should be valid when None") {
-                val result = validator.validate(None)
+                val result = validator(None)
                 result should beValid()
             }
 
             it("should be invalid when Some") {
-                val result = validator.validate(Some("Plop"))
+                val result = validator(Some("Plop"))
                 result should beInvalidWithReason("require to be empty")
             }
         }
@@ -28,12 +28,12 @@ class OptionsSpec : DescribeSpec() {
             val validator = Options.isSome<String>()
 
             it("should be valid when Some") {
-                val result = validator.validate(Some("Plop"))
+                val result = validator(Some("Plop"))
                 result should beValid()
             }
 
             it("should be invalid when None") {
-                val result = validator.validate(None)
+                val result = validator(None)
                 result should beInvalidWithReason("require to be defined")
             }
         }
@@ -42,17 +42,17 @@ class OptionsSpec : DescribeSpec() {
             val validator = Options.isNoneOr { Strings.notBlank }
 
             it("should be valid when None") {
-                val result = validator.validate(None)
+                val result = validator(None)
                 result should beValid()
             }
 
             it("should be valid when Some with a valid value") {
-                val result = validator.validate(Some("Plop"))
+                val result = validator(Some("Plop"))
                 result should beValid()
             }
 
             it("should be invalid when Some with an invalid value") {
-                val result = validator.validate(Some(""))
+                val result = validator(Some(""))
                 result should beInvalidWithReason("requires to be not blank")
             }
         }

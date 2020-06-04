@@ -20,7 +20,7 @@ class PojoSpec : DescribeSpec() {
                         city = "Chiba"
                     )
                 )
-                val result = User.validator.validate(user)
+                val result = User.validator(user)
                 result should beValid()
             }
 
@@ -35,7 +35,7 @@ class PojoSpec : DescribeSpec() {
                         city = ""
                     )
                 )
-                val result = User.validator.validate(user)
+                val result = User.validator(user)
                 result should beInvalid()
             }
         }

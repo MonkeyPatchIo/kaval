@@ -1,8 +1,8 @@
 package io.monkeypatch.kaval.core.validator
 
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.field
-import io.monkeypatch.kaval.core.validator
 
 /**
  * Validators for [Pair] and [Triple]
@@ -27,7 +27,7 @@ object Tuples {
      *
      * @param tValidator a validator for the first triple argument
      * @param uValidator a validator for the second triple argument
-     * @param wValidator a validator for the thrid triple argument
+     * @param wValidator a validator for the third triple argument
      * @param T the first triple type
      * @param U the second triple type
      * @param W the thrid triple type

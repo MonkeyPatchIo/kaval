@@ -1,5 +1,6 @@
 // ktlint-disable filename
 import io.monkeypatch.kaval.core.Validator
+import io.monkeypatch.kaval.core.and
 import io.monkeypatch.kaval.core.field
 import io.monkeypatch.kaval.core.validator.Ints.inRange
 import io.monkeypatch.kaval.core.whenIsInstance

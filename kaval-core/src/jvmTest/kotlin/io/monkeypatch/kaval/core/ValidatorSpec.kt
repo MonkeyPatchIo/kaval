@@ -47,7 +47,7 @@ class ValidatorSpec : DescribeSpec() {
 
                 it("$name should be ${if (isValid) "valid" else "invalid"}") {
                     checkAll(any) { a ->
-                        val result = validator.validate(a)
+                        val result = validator(a)
 
                         if (isValid) result should beValid()
                         else result should beInvalidWithReason(
@@ -78,7 +78,7 @@ class ValidatorSpec : DescribeSpec() {
 
                 it("$name should be ${if (reasons.isEmpty()) "valid" else "invalid with ${reasons.joinToString(", ")}"}") {
                     checkAll(any) {
-                        val result = validator.validate(any)
+                        val result = validator(any)
                         if (reasons.isEmpty()) result should beValid()
                         else reasons.forEach { reason ->
                             result should beInvalidWithReason(
@@ -108,7 +108,7 @@ class ValidatorSpec : DescribeSpec() {
 
                 it("$name should be ${if (isValid) "valid" else "invalid"}") {
                     checkAll(any) { a ->
-                        val result = validator.validate(a)
+                        val result = validator(a)
 
                         if (isValid) result should beValid()
                         else result should beInvalidWithReason(

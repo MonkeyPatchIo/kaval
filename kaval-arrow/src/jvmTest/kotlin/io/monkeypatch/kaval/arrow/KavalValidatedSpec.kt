@@ -7,9 +7,9 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.monkeypatch.kaval.arrow.KavalValidated.check
 import io.monkeypatch.kaval.arrow.KavalValidated.toValidated
 import io.monkeypatch.kaval.arrow.KavalValidated.validateValidated
-import io.monkeypatch.kaval.core.BaseValidationIssue
 import io.monkeypatch.kaval.core.Invalid
 import io.monkeypatch.kaval.core.Valid
+import io.monkeypatch.kaval.core.ValidationIssue.BaseValidationIssue
 import io.monkeypatch.kaval.core.alwaysInvalid
 import io.monkeypatch.kaval.core.alwaysValid
 

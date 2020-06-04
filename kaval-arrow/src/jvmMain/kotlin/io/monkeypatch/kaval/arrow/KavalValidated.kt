@@ -36,7 +36,7 @@ object KavalValidated {
      * @return an `Validated<Nel<ValidationIssue>, T>`
      */
     fun <T> Validator<T>.validateValidated(t: T): Validated<Nel<ValidationIssue>, T> =
-        this.validate(t)
+        this(t)
             .toValidated()
             .map { t }
 

@@ -36,7 +36,7 @@ class TuplesSpec : DescribeSpec() {
 
             forAll(usesCases) { s, i, expected ->
                 it("($s, $i) should be ${if (expected.isEmpty()) "Valid" else "Invalid"}") {
-                    val result = validator.validate(s to i)
+                    val result = validator(s to i)
 
                     if (expected.isEmpty()) {
                         result should beValid()
@@ -69,7 +69,7 @@ class TuplesSpec : DescribeSpec() {
 
             forAll(usesCases) { s, i, l, expected ->
                 it("($s, $i, $l) should be ${if (expected.isEmpty()) "Valid" else "Invalid"}") {
-                    val result = validator.validate(Triple(s, i, l))
+                    val result = validator(Triple(s, i, l))
 
                     if (expected.isEmpty()) {
                         result should beValid()

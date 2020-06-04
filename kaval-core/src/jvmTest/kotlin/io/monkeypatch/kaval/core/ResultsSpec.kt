@@ -6,6 +6,8 @@ import io.kotest.data.headers
 import io.kotest.data.row
 import io.kotest.data.table
 import io.kotest.matchers.shouldBe
+import io.monkeypatch.kaval.core.ValidationIssue.BaseValidationIssue
+import io.monkeypatch.kaval.core.ValidationIssue.FieldValidationIssue
 
 class ResultsSpec : DescribeSpec() {
 
@@ -78,7 +80,8 @@ class ResultsSpec : DescribeSpec() {
                 row("invalid toString", invalid, "Invalid: plaf!"),
                 row("invalidField toString", invalidField, "Invalid: [length] plouf!"),
                 row(
-                    "(invalid + invalidField) toString", invalid concat invalidField, """Invalid:
+                    "(invalid + invalidField) toString", invalid concat invalidField,
+                    """Invalid:
                    | - plaf!
                    | - [length] plouf!""".trimMargin()
                 )

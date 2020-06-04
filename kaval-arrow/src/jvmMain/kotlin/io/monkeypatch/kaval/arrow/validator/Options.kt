@@ -13,7 +13,7 @@ import io.monkeypatch.kaval.core.whenIsInstance
 object Options {
 
     /**
-     * A validator for [Option] that only accept [None]
+     * A validator for [Option] that only accept [arrow.core.None]
      *
      * @param T the option inner type
      * @return the validator
@@ -31,7 +31,7 @@ object Options {
         predicate(Option<T>::isDefined) { "require to be defined" }
 
     /**
-     * A validator for [Option] that accept [None] or a valid [Some]
+     * A validator for [Option] that accept [arrow.core.None] or a valid [Some]
      *
      * @param validator provide a T validator for [Some] case
      * @param T the option inner type

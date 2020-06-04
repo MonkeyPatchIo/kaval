@@ -13,7 +13,7 @@ import io.monkeypatch.kaval.core.Validator
  */
 fun <T> beValidFor(validator: Validator<T>): Matcher<T> = object : Matcher<T> {
     override fun test(value: T): MatcherResult {
-        val result = validator.validate(value)
+        val result = validator(value)
         return MatcherResult.Companion(
             result is Valid,
             "Should be valid, got $result",

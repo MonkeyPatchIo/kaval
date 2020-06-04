@@ -10,17 +10,17 @@ class ListSpec : DescribeSpec() {
         describe("listValidator") {
 
             it("should accept empty list") {
-                val result = listValidator.validate(emptyList())
+                val result = listValidator(emptyList())
                 result should beValid()
             }
 
             it("should reject List(1,10,100)") {
-                val result = listValidator.validate(listOf(1, 10, 100))
+                val result = listValidator(listOf(1, 10, 100))
                 result should beInvalidWithReason("requires to be greater than 9, got 1")
             }
 
             it("should accept List(10,100)") {
-                val result = listValidator.validate(listOf(10, 100))
+                val result = listValidator(listOf(10, 100))
                 result should beValid()
             }
         }

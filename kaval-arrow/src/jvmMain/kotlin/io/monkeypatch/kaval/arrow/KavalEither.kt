@@ -30,7 +30,7 @@ object KavalEither {
      * @return an `Either<InvalidException, T>`
      */
     fun <T> Validator<T>.validateEither(t: T): Either<InvalidException, T> =
-        this.validate(t)
+        this(t)
             .toEither()
             .map { t }
 

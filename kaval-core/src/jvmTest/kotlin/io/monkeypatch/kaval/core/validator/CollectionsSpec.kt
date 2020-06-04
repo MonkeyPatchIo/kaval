@@ -35,11 +35,11 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = empty()
 
                 it("empty should accept an empty list") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beValid()
                 }
                 it("empty should accept a non-empty list") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beInvalidWithReason("requires an empty collection, got {1, 2, 3}")
                 }
             }
@@ -48,11 +48,11 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = notEmpty()
 
                 it("notEmpty should reject an notEmpty list") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beInvalidWithReason("requires a not empty collection")
                 }
                 it("notEmpty should accept a non-notEmpty list") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beValid()
                 }
             }
@@ -61,11 +61,11 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = hasSize(3)
 
                 it("hasSize should reject a list with invalid size") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beInvalidWithReason("requires to be equals to 3, got 0")
                 }
                 it("hasSize should accept a well-sized list") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beValid()
                 }
             }
@@ -74,15 +74,15 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = maxSize(3)
 
                 it("maxSize should accept a smaller list") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beValid()
                 }
                 it("maxSize should accept a well-sized list") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beValid()
                 }
                 it("maxSize should reject a bigger list") {
-                    val result = validator.validate(listOf(1, 2, 3, 4, 5))
+                    val result = validator(listOf(1, 2, 3, 4, 5))
                     result should beInvalidWithReason("requires to be lower or equals to 3, got 5")
                 }
             }
@@ -91,15 +91,15 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = minSize(3)
 
                 it("minSize should reject a smaller list") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beInvalidWithReason("requires to be greater or equals to 3, got 0")
                 }
                 it("minSize should accept a well-sized list") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beValid()
                 }
                 it("minSize should accept a bigger list") {
-                    val result = validator.validate(listOf(1, 2, 3, 4, 5))
+                    val result = validator(listOf(1, 2, 3, 4, 5))
                     result should beValid()
                 }
             }
@@ -110,22 +110,22 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = allValid { greaterThan(9) }
 
                 it("allValid should accept an empty list") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beValid()
                 }
 
                 it("allValid should accept a list with all element valid") {
-                    val result = validator.validate(listOf(10, 11, 12))
+                    val result = validator(listOf(10, 11, 12))
                     result should beValid()
                 }
 
                 it("allValid should reject a list with at least an element invalid") {
-                    val result = validator.validate(listOf(10, 4, 12))
+                    val result = validator(listOf(10, 4, 12))
                     result should beInvalidWithReason("requires to be greater than 9, got 4")
                 }
 
                 it("allValid should reject a list with all elements invalid") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beInvalidWithAllReasons(
                         "requires to be greater than 9, got 1",
                         "requires to be greater than 9, got 2",
@@ -138,22 +138,22 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<List<Int>> = atLeastOneValid { greaterThan(9) }
 
                 it("atLeastOneValid should reject an empty list") {
-                    val result = validator.validate(emptyList())
+                    val result = validator(emptyList())
                     result should beInvalidWithReason("requires at least one element valid, got no elements")
                 }
 
                 it("atLeastOneValid should accept a list with all element valid") {
-                    val result = validator.validate(listOf(10, 11, 12))
+                    val result = validator(listOf(10, 11, 12))
                     result should beValid()
                 }
 
                 it("atLeastOneValid should accept a list with at least an element invalid") {
-                    val result = validator.validate(listOf(10, 4, 12))
+                    val result = validator(listOf(10, 4, 12))
                     result should beValid()
                 }
 
                 it("atLeastOneValid should reject a list with all elements invalid") {
-                    val result = validator.validate(listOf(1, 2, 3))
+                    val result = validator(listOf(1, 2, 3))
                     result should beInvalidWithAny(
                         startWith("requires at least one element valid, all elements are invalid")
                     )
@@ -166,12 +166,12 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<Map<String, Int>> = allValuesValid { greaterThan(9) }
 
                 it("allValid should accept an empty map") {
-                    val result = validator.validate(emptyMap())
+                    val result = validator(emptyMap())
                     result should beValid()
                 }
 
                 it("allValid should accept a map with all values valid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             "ten" to 10,
                             "eleven" to 11,
@@ -182,7 +182,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should reject a map with at least a value invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             "ten" to 10,
                             "four" to 4,
@@ -193,7 +193,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should reject a map with all values invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             "one" to 1,
                             "two" to 2,
@@ -212,12 +212,12 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<Map<Int, String>> = allKeysValid { greaterThan(9) }
 
                 it("allValid should accept an empty map") {
-                    val result = validator.validate(emptyMap())
+                    val result = validator(emptyMap())
                     result should beValid()
                 }
 
                 it("allValid should accept a map with all keys valid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             11 to "eleven",
@@ -228,7 +228,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should reject a map with at least a key invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             4 to "four",
@@ -239,7 +239,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should reject a map with all keys invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             1 to "one",
                             2 to "two",
@@ -260,12 +260,12 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should accept an empty map") {
-                    val result = validator.validate(emptyMap())
+                    val result = validator(emptyMap())
                     result should beValid()
                 }
 
                 it("allValid should accept a map with all entries valid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             11 to "eleven",
@@ -276,7 +276,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should reject a map with at least an entry invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             4 to "four",
@@ -289,7 +289,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("allValid should reject a map with all entries invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "",
                             2 to "two",
@@ -308,12 +308,12 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<Map<String, Int>> = atLeastOneValueValid { greaterThan(9) }
 
                 it("atLeastOneValid should reject an empty map") {
-                    val result = validator.validate(emptyMap())
+                    val result = validator(emptyMap())
                     result should beInvalidWithReason("requires at least one value valid, got no values")
                 }
 
                 it("atLeastOneValid should accept a map with all value valid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             "ten" to 10,
                             "eleven" to 11,
@@ -324,7 +324,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should accept a map with at least a value invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             "ten" to 10,
                             "four" to 4,
@@ -335,7 +335,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should reject a map with all value invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             "one" to 1,
                             "two" to 2,
@@ -352,12 +352,12 @@ class CollectionsSpec : DescribeSpec() {
                 val validator: Validator<Map<Int, String>> = atLeastOneKeyValid { greaterThan(9) }
 
                 it("atLeastOneValid should reject an empty map") {
-                    val result = validator.validate(emptyMap())
+                    val result = validator(emptyMap())
                     result should beInvalidWithReason("requires at least one key valid, got no keys")
                 }
 
                 it("atLeastOneValid should accept a map with all key valid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             11 to "eleven",
@@ -368,7 +368,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should accept a map with at least a key invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             4 to "four",
@@ -379,7 +379,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should reject a map with all key invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             1 to "one",
                             2 to "two",
@@ -398,12 +398,12 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should reject an empty map") {
-                    val result = validator.validate(emptyMap())
+                    val result = validator(emptyMap())
                     result should beInvalidWithReason("requires at least one entry valid, got no entries")
                 }
 
                 it("atLeastOneValid should accept a map with all entry valid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             11 to "eleven",
@@ -414,7 +414,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should accept a map with at least a entry invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "ten",
                             4 to "four",
@@ -425,7 +425,7 @@ class CollectionsSpec : DescribeSpec() {
                 }
 
                 it("atLeastOneValid should reject a map with all entry invalid") {
-                    val result = validator.validate(
+                    val result = validator(
                         mapOf(
                             10 to "",
                             2 to "two",

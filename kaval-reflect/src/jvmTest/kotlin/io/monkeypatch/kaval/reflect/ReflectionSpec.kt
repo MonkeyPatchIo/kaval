@@ -20,7 +20,7 @@ class ReflectionSpec : DescribeSpec() {
             it("property should reject if field invalid") {
                 val pojo = MyPojo("", 42)
 
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
 
                 result should beInvalidWithReason("requires to be not blank")
             }
@@ -28,7 +28,7 @@ class ReflectionSpec : DescribeSpec() {
             it("property should accept if field valid") {
                 val pojo = MyPojo("test", 42)
 
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
 
                 result should beValid()
             }
@@ -43,7 +43,7 @@ class ReflectionSpec : DescribeSpec() {
             it("property should reject if name invalid") {
                 val pojo = MyPojo("", 42)
 
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
 
                 result should beInvalidWithReason("requires to be not blank")
             }
@@ -51,7 +51,7 @@ class ReflectionSpec : DescribeSpec() {
             it("property should reject if value invalid") {
                 val pojo = MyPojo("test", 42)
 
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
 
                 result should beInvalidWithReason("requires to be in range 1..10, got 42")
             }
@@ -59,7 +59,7 @@ class ReflectionSpec : DescribeSpec() {
             it("property should accept if field valid") {
                 val pojo = MyPojo("test", 7)
 
-                val result = validator.validate(pojo)
+                val result = validator(pojo)
 
                 result should beValid()
             }

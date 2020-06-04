@@ -18,27 +18,27 @@ class DoublesSpec : DescribeSpec() {
             val validator = inRange((5.0)..(10.0))
 
             it("inRange should reject a lower number") {
-                val result = validator.validate(0.0)
+                val result = validator(0.0)
                 result should beInvalidWithReason(
                     "requires to be in range 5.0..10.0, got 0.0"
                 )
             }
             it("inRange should reject a higher number") {
-                val result = validator.validate(42.0)
+                val result = validator(42.0)
                 result should beInvalidWithReason(
                     "requires to be in range 5.0..10.0, got 42.0"
                 )
             }
             it("inRange should accept value lower bound") {
-                val result = validator.validate(5.0)
+                val result = validator(5.0)
                 result should beValid()
             }
             it("inRange should accept in range") {
-                val result = validator.validate(10.0)
+                val result = validator(10.0)
                 result should beValid()
             }
             it("inRange should accept value upper bound") {
-                val result = validator.validate(7.0)
+                val result = validator(7.0)
                 result should beValid()
             }
         }
@@ -47,19 +47,19 @@ class DoublesSpec : DescribeSpec() {
             val validator = strictlyPositive
 
             it("strictlyPositive should reject a negative number") {
-                val result = validator.validate(-1.0)
+                val result = validator(-1.0)
                 result should beInvalidWithReason(
                     "requires to be strictly positive"
                 )
             }
             it("strictlyPositive should reject zero") {
-                val result = validator.validate(0.0)
+                val result = validator(0.0)
                 result should beInvalidWithReason(
                     "requires to be strictly positive"
                 )
             }
             it("strictlyPositive should accept a positive number") {
-                val result = validator.validate(5.0)
+                val result = validator(5.0)
                 result should beValid()
             }
         }
@@ -68,17 +68,17 @@ class DoublesSpec : DescribeSpec() {
             val validator = positive
 
             it("positive should reject a negative number") {
-                val result = validator.validate(-1.0)
+                val result = validator(-1.0)
                 result should beInvalidWithReason(
                     "requires to be positive"
                 )
             }
             it("positive should reject zero") {
-                val result = validator.validate(0.0)
+                val result = validator(0.0)
                 result should beValid()
             }
             it("positive should accept a positive number") {
-                val result = validator.validate(5.0)
+                val result = validator(5.0)
                 result should beValid()
             }
         }
@@ -87,19 +87,19 @@ class DoublesSpec : DescribeSpec() {
             val validator = strictlyNegative
 
             it("strictlyNegative should reject a positive number") {
-                val result = validator.validate(1.0)
+                val result = validator(1.0)
                 result should beInvalidWithReason(
                     "requires to be strictly negative"
                 )
             }
             it("strictlyNegative should reject zero") {
-                val result = validator.validate(0.0)
+                val result = validator(0.0)
                 result should beInvalidWithReason(
                     "requires to be strictly negative"
                 )
             }
             it("strictlyNegative should accept a negative number") {
-                val result = validator.validate(-5.0)
+                val result = validator(-5.0)
                 result should beValid()
             }
         }
@@ -108,17 +108,17 @@ class DoublesSpec : DescribeSpec() {
             val validator = negative
 
             it("negative should reject a postive number") {
-                val result = validator.validate(1.0)
+                val result = validator(1.0)
                 result should beInvalidWithReason(
                     "requires to be negative"
                 )
             }
             it("negative should reject zero") {
-                val result = validator.validate(0.0)
+                val result = validator(0.0)
                 result should beValid()
             }
             it("negative should accept a negative number") {
-                val result = validator.validate(-5.0)
+                val result = validator(-5.0)
                 result should beValid()
             }
         }
