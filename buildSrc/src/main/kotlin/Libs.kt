@@ -4,7 +4,7 @@ object Libs {
     const val kotlinVersion = "1.3.72"
     const val dokkaVersion = "0.10.1"
     const val testLogger = "2.0.0"
-    const val kotlinter = "2.3.2"
+    const val kotlinter = "2.4.0"
     const val release = "2.8.1"
     const val versions = "0.28.0"
     const val orchid = "0.21.0"
