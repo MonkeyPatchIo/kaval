@@ -1,4 +1,4 @@
-package io.monkeypatch.kaval.reflect
+package io.monkeypatch.kaval.core.reflect
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.should
@@ -7,6 +7,8 @@ import io.monkeypatch.kaval.core.validator.Ints
 import io.monkeypatch.kaval.core.validator.Strings.notBlank
 import io.monkeypatch.kaval.kotlintest.beInvalidWithReason
 import io.monkeypatch.kaval.kotlintest.beValid
+import io.monkeypatch.kaval.reflect.property
+import io.monkeypatch.kaval.reflect.reflectValidator
 
 class ReflectionSpec : DescribeSpec() {
 

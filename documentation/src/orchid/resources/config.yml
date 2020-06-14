@@ -25,9 +25,6 @@ theme:
       itemId: 'Kaval Core'
       icon: fas fa-atom
     - type: page
-      itemId: 'Kaval Reflect'
-      icon: fas fa-puzzle-piece
-    - type: page
       itemId: 'Kaval Kotest'
       icon: fas fa-vial
     - type: page

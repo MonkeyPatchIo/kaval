@@ -10,7 +10,6 @@ dependencies {
 
     // Kaval
     implementation(project(":kaval-core"))
-    implementation(project(":kaval-reflect"))
     implementation(project(":kaval-arrow"))
 
     // Arrow
