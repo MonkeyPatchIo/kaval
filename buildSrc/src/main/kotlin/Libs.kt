@@ -7,7 +7,7 @@ object Libs {
     const val kotlinter = "2.4.0"
     const val release = "2.8.1"
     const val versions = "0.28.0"
-    const val orchid = "0.21.0"
+    const val orchid = "0.21.1"
 
     object Coroutine {
         private const val version = "1.3.7"
