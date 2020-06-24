@@ -26,12 +26,13 @@ object Libs {
     }
 
     object Kotest {
-        private const val version = "4.0.6"
-        const val assertionsMpp = "io.kotest:kotest-assertions:$version"
+        private const val version = "4.1.0"
+        const val assertionsMpp = "io.kotest:kotest-assertions-core:$version"
         const val assertionsJvm = "io.kotest:kotest-assertions-core-jvm:$version"
         const val assertionsArrow = "io.kotest:kotest-assertions-arrow:$version"
         const val propertyJvm = "io.kotest:kotest-property-jvm:$version"
         const val runnerJunit5 = "io.kotest:kotest-runner-junit5-jvm:$version"
+        const val runnerConsole = "io.kotest:kotest-runner-console-jvm:$version"
     }
 
     object Orchid {
