@@ -9,6 +9,13 @@ object Libs {
     const val versions = "0.28.0"
     const val orchid = "0.21.0"
 
+    object Coroutine {
+        private const val version = "1.3.7"
+        const val jvmCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+        const val jsCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$version"
+    }
+
     object Arrow {
         private const val version = "0.10.5"
         const val core = "io.arrow-kt:arrow-core:$version"

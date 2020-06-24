@@ -1,7 +1,7 @@
 package io.monkeypatch.kaval.arrow
 
-import arrow.core.Nel
 import arrow.core.Validated
+import arrow.core.ValidatedNel
 import arrow.core.invalid
 import arrow.core.nel
 import arrow.core.valid
@@ -18,7 +18,7 @@ object KavalValidated {
      *
      * @return an `Validated<Nel<ValidationIssue>, Unit>`
      */
-    fun ValidationResult.toValidated(): Validated<Nel<ValidationIssue>, Unit> =
+    fun ValidationResult.toValidated(): ValidatedNel<ValidationIssue, Unit> =
         when (this) {
             is Valid -> Unit.valid()
             is Invalid -> {
@@ -35,7 +35,7 @@ object KavalValidated {
      * @param T the element type
      * @return an `Validated<Nel<ValidationIssue>, T>`
      */
-    fun <T> Validator<T>.validateValidated(t: T): Validated<Nel<ValidationIssue>, T> =
+    fun <T> Validator<T>.validateValidated(t: T): ValidatedNel<ValidationIssue, T> =
         this(t)
             .toValidated()
             .map { t }
@@ -46,6 +46,6 @@ object KavalValidated {
      * @param T the element type
      * @return an [Validated.Valid] with the element if valid, otherwise an [Validated.Invalid] with a not empty list of [ValidationIssue]
      */
-    fun <T> T.check(validator: Validator<T>): Validated<Nel<ValidationIssue>, T> =
+    fun <T> T.check(validator: Validator<T>): ValidatedNel<ValidationIssue, T> =
         validator.validateValidated(this)
 }
