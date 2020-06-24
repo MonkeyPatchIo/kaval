@@ -91,5 +91,6 @@ println(result)
 ## Modules
 
 * [kaval-core](./kaval-core): the core, start here
-* [kaval-reflect](./kaval-reflect): add a validator using Kotlin reflection
 * [kaval-kotest](./kaval-kotest): add custom matchers for [kotest](https://github.com/kotest/kotest)
+* [kaval-arrow](./kaval-arrow): integration with [Arrow](https://arrow-kt.io)
+* [kaval-coroutine](./kaval-coroutine): validation with `suspend` function

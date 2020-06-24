@@ -25,11 +25,14 @@ theme:
       itemId: 'Kaval Core'
       icon: fas fa-atom
     - type: page
-      itemId: 'Kaval Kotest'
-      icon: fas fa-vial
-    - type: page
       itemId: 'Kaval Arrow'
       icon: fas fa-location-arrow
+    - type: page
+      itemId: 'Kaval Coroutine'
+      icon: fas fa-random
+    - type: page
+      itemId: 'Kaval Kotest'
+      icon: fas fa-vial
     # Open Source
     - type: separator
       title: Open Source

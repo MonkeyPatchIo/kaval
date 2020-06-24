@@ -1,7 +1,11 @@
+---
+---
+
 # Kaval Coroutine
 
 Sometime, your want to write a custom function is `suspend`, you cannot use the standard `Validator<T>`.
 This module introduces the `SuspendValidator<T>` validator for _red_ functions.
+
 Further reading: [How do you color your functions?](https://medium.com/@elizarov/how-do-you-color-your-functions-a6bb423d936d)
 
 Note: see [`kaval-core`](../kaval-core) before using the `kaval-coroutine` module.
