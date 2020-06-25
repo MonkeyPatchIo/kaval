@@ -100,7 +100,7 @@ class CommonsSpec : DescribeSpec() {
         }
 
         describe("field") {
-            val validator: SuspendValidator<MyPojo> = field("name", MyPojo::name) {
+            val validator: SuspendValidator<MyPojo> = field("name", { it.name }) {
                 Strings.notBlank.toSuspend()
             }
 

@@ -53,7 +53,7 @@ fun <T> nullOr(validator: suspend () -> SuspendValidator<T>): SuspendValidator<T
  */
 fun <H, C> field(
     fieldName: String,
-    fieldExtractor: (H) -> C,
+    fieldExtractor: suspend (H) -> C,
     fieldValidator: suspend () -> SuspendValidator<C>
 ): SuspendValidator<H> =
     { host: H ->
