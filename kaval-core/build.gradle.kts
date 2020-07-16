@@ -51,10 +51,10 @@ kotlin {
             compilations["test"].defaultSourceSet {
                 dependencies {
                     implementation(project(":kaval-kotest"))
-                    implementation(Libs.Kotest.runnerConsole)
                     implementation(Libs.Kotest.assertionsJvm)
                     implementation(Libs.Kotest.propertyJvm)
                     implementation(Libs.Kotest.runnerJunit5)
+                    implementation(Libs.Kotest.runnerConsole)
                 }
             }
         }

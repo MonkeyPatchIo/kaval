@@ -41,6 +41,7 @@ kotlin {
                     implementation(Libs.Kotest.assertionsJvm)
                     implementation(Libs.Kotest.assertionsArrow)
                     implementation(Libs.Kotest.runnerJunit5)
+                    implementation(Libs.Kotest.runnerConsole)
                 }
             }
         }

@@ -44,6 +44,7 @@ kotlin {
             compilations["test"].defaultSourceSet {
                 dependencies {
                     implementation(Libs.Kotest.runnerJunit5)
+                    implementation(Libs.Kotest.runnerConsole)
                 }
             }
         }

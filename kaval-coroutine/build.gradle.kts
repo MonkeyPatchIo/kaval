@@ -67,10 +67,12 @@ kotlin {
                     implementation(Libs.Kotest.assertionsJvm)
                     implementation(Libs.Kotest.propertyJvm)
                     implementation(Libs.Kotest.runnerJunit5)
+                    implementation(Libs.Kotest.runnerConsole)
                 }
             }
             compilations["test"].kotlinOptions {
                 jvmTarget = "1.8"
+                freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
             }
         }
     }

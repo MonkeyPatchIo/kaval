@@ -1,13 +1,14 @@
 object Libs {
 
-    // Plugins
-    const val kotlinVersion = "1.3.72"
-    const val dokkaVersion = "0.10.1"
-    const val testLogger = "2.0.0"
-    const val kotlinter = "2.4.1"
-    const val release = "2.8.1"
-    const val versions = "0.28.0"
-    const val orchid = "0.21.1"
+    object Plugins {
+        const val kotlinVersion = "1.3.72"
+        const val dokkaVersion = "0.10.1"
+        const val testLogger = "2.0.0"
+        const val kotlinter = "2.4.1"
+        const val release = "2.8.1"
+        const val versions = "0.28.0"
+        const val orchid = "0.21.1"
+    }
 
     object Coroutine {
         private const val version = "1.3.7"
@@ -36,12 +37,13 @@ object Libs {
     }
 
     object Orchid {
-        const val core = "io.github.javaeden.orchid:OrchidCore:$orchid"
+        private const val version = Libs.Plugins.orchid
+        const val core = "io.github.javaeden.orchid:OrchidCore:$version"
 
-        //        const val search = "io.github.javaeden.orchid:OrchidSearch:$orchid"
-        const val docs = "io.github.javaeden.orchid:OrchidDocs:$orchid"
-        const val admin = "io.github.javaeden.orchid:OrchidPluginDocs:$orchid"
-        const val sourceDocs = "io.github.javaeden.orchid:OrchidSourceDoc:$orchid"
-        const val github = "io.github.javaeden.orchid:OrchidGithub:$orchid"
+        //        const val search = "io.github.javaeden.orchid:OrchidSearch:version"
+        const val docs = "io.github.javaeden.orchid:OrchidDocs:$version"
+        const val admin = "io.github.javaeden.orchid:OrchidPluginDocs:$version"
+        const val sourceDocs = "io.github.javaeden.orchid:OrchidSourceDoc:$version"
+        const val github = "io.github.javaeden.orchid:OrchidGithub:$version"
     }
 }

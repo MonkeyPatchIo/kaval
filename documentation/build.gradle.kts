@@ -2,7 +2,7 @@
 
 plugins {
     kotlin("jvm")
-    id("com.eden.orchidPlugin") version Libs.orchid
+    id("com.eden.orchidPlugin") version Libs.Plugins.orchid
 }
 
 repositories {

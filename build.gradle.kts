@@ -2,15 +2,15 @@ import net.researchgate.release.GitAdapter
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("multiplatform") version Libs.kotlinVersion
-    id("org.jetbrains.dokka") version Libs.dokkaVersion
+    kotlin("multiplatform") version Libs.Plugins.kotlinVersion
+    id("org.jetbrains.dokka") version Libs.Plugins.dokkaVersion
     id("java-library")
     id("base")
 
-    id("com.github.ben-manes.versions") version Libs.versions
-    id("org.jmailen.kotlinter") version Libs.kotlinter
-    id("com.adarshr.test-logger") version Libs.testLogger
-    id("net.researchgate.release") version Libs.release
+    id("com.github.ben-manes.versions") version Libs.Plugins.versions
+    id("org.jmailen.kotlinter") version Libs.Plugins.kotlinter
+    id("com.adarshr.test-logger") version Libs.Plugins.testLogger
+    id("net.researchgate.release") version Libs.Plugins.release
 }
 
 repositories {
