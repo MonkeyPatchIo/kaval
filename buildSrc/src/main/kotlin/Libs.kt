@@ -27,7 +27,7 @@ object Libs {
     }
 
     object Kotest {
-        private const val version = "4.1.1"
+        private const val version = "4.1.2"
         const val assertionsMpp = "io.kotest:kotest-assertions-core:$version"
         const val assertionsJvm = "io.kotest:kotest-assertions-core-jvm:$version"
         const val assertionsArrow = "io.kotest:kotest-assertions-arrow:$version"
