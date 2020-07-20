@@ -6,7 +6,7 @@ object Libs {
         const val testLogger = "2.1.0"
         const val kotlinter = "2.4.1"
         const val release = "2.8.1"
-        const val versions = "0.28.0"
+        const val versions = "0.29.0"
         const val orchid = "0.21.1"
     }
 
