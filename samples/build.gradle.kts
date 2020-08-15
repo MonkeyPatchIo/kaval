@@ -19,7 +19,6 @@ dependencies {
     testImplementation(project(":kaval-kotest"))
     testImplementation(Libs.Kotest.assertionsJvm)
     testImplementation(Libs.Kotest.runnerJunit5)
-    testImplementation(Libs.Kotest.runnerConsole)
 }
 
 tasks {

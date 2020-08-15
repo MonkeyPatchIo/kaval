@@ -1,17 +1,17 @@
 object Libs {
 
     object Plugins {
-        const val kotlinVersion = "1.3.72"
-        const val dokkaVersion = "0.10.1"
+        const val kotlinVersion = "1.4.0"
+        const val dokkaVersion = "1.4.0-rc"
         const val testLogger = "2.1.0"
-        const val kotlinter = "2.4.1"
+        const val kotlinter = "3.0.2"
         const val release = "2.8.1"
         const val versions = "0.29.0"
         const val orchid = "0.21.1"
     }
 
     object Coroutine {
-        private const val version = "1.3.7"
+        private const val version = "1.3.9"
         const val jvmCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
         const val jsCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$version"
@@ -27,13 +27,12 @@ object Libs {
     }
 
     object Kotest {
-        private const val version = "4.1.2"
+        private const val version = "4.2.2"
         const val assertionsMpp = "io.kotest:kotest-assertions-core:$version"
         const val assertionsJvm = "io.kotest:kotest-assertions-core-jvm:$version"
         const val assertionsArrow = "io.kotest:kotest-assertions-arrow:$version"
         const val propertyJvm = "io.kotest:kotest-property-jvm:$version"
         const val runnerJunit5 = "io.kotest:kotest-runner-junit5-jvm:$version"
-        const val runnerConsole = "io.kotest:kotest-runner-console-jvm:$version"
     }
 
     object Orchid {

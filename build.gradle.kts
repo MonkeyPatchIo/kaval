@@ -13,10 +13,32 @@ plugins {
     id("net.researchgate.release") version Libs.Plugins.release
 }
 
+dependencies {
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:${Libs.Plugins.dokkaVersion}")
+}
+
 repositories {
     jcenter()
     mavenCentral()
 }
+
+kotlin {
+    metadata()
+    jvm()
+    js {
+        browser()
+        nodejs()
+    }
+}
+
+tasks {
+    dokkaHtmlMultimodule {
+        outputDirectory = "$buildDir/multimodule"
+        documentationFileName = "README.md"
+    }
+
+}
+
 
 allprojects {
     group = "io.monkeypatch.kaval"

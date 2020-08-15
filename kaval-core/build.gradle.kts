@@ -20,7 +20,10 @@ repositories {
 kotlin {
     metadata()
     jvm()
-    js()
+    js {
+        browser()
+        nodejs()
+    }
 
     // HOWTO build with all available (compatible) platform ?
     // iosX64()
@@ -54,7 +57,6 @@ kotlin {
                     implementation(Libs.Kotest.assertionsJvm)
                     implementation(Libs.Kotest.propertyJvm)
                     implementation(Libs.Kotest.runnerJunit5)
-                    implementation(Libs.Kotest.runnerConsole)
                 }
             }
         }
@@ -62,9 +64,17 @@ kotlin {
 }
 
 tasks {
-    dokka {
-        outputFormat = "javadoc"
+    dokkaHtml {
         outputDirectory = "$buildDir/dokka"
+        dokkaSourceSets {
+            create("commonMain")
+        }
+    }
+    dokkaJavadoc {
+        outputDirectory = "$buildDir/javadoc"
+        dokkaSourceSets {
+            create("jvmMain")
+        }
     }
 
     named<Test>("jvmTest") {
@@ -93,7 +103,7 @@ publishing {
 // // Add a Javadoc JAR to each publication as required by Maven Central
 
 val javadocJar by tasks.creating(Jar::class) {
-    val dokkaTask = tasks.getByName<DokkaTask>("dokka")
+    val dokkaTask = tasks.getByName<DokkaTask>("dokkaJavadoc")
     from(dokkaTask.outputDirectory)
     dependsOn(dokkaTask)
     dependsOn("build")

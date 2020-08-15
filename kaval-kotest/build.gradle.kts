@@ -44,7 +44,6 @@ kotlin {
             compilations["test"].defaultSourceSet {
                 dependencies {
                     implementation(Libs.Kotest.runnerJunit5)
-                    implementation(Libs.Kotest.runnerConsole)
                 }
             }
         }
@@ -52,9 +51,18 @@ kotlin {
 }
 
 tasks {
-    dokka {
-        outputFormat = "javadoc"
+    dokkaHtml {
+        // outputFormat = "javadoc"
         outputDirectory = "$buildDir/dokka"
+        dokkaSourceSets {
+            create("commonMain")
+        }
+    }
+    dokkaJavadoc {
+        outputDirectory = "$buildDir/javadoc"
+        dokkaSourceSets {
+            create("jvmMain")
+        }
     }
 
     named<Test>("jvmTest") {
@@ -83,7 +91,7 @@ publishing {
 // // Add a Javadoc JAR to each publication as required by Maven Central
 
 val javadocJar by tasks.creating(Jar::class) {
-    val dokkaTask = tasks.getByName<DokkaTask>("dokka")
+    val dokkaTask = tasks.getByName<DokkaTask>("dokkaJavadoc")
     from(dokkaTask.outputDirectory)
     dependsOn(dokkaTask)
     dependsOn("build")
