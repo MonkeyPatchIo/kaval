@@ -51,19 +51,20 @@ kotlin {
 }
 
 tasks {
-    dokkaHtml {
-        // outputFormat = "javadoc"
-        outputDirectory = "$buildDir/dokka"
-        dokkaSourceSets {
-            create("commonMain")
-        }
-    }
-    dokkaJavadoc {
-        outputDirectory = "$buildDir/javadoc"
-        dokkaSourceSets {
-            create("jvmMain")
-        }
-    }
+    // FIXME dokka
+//    dokkaHtml {
+//        // outputFormat = "javadoc"
+//        outputDirectory = "$buildDir/dokka"
+//        dokkaSourceSets {
+//            create("commonMain")
+//        }
+//    }
+//    dokkaJavadoc {
+//        outputDirectory = "$buildDir/javadoc"
+//        dokkaSourceSets {
+//            create("jvmMain")
+//        }
+//    }
 
     named<Test>("jvmTest") {
         useJUnitPlatform()

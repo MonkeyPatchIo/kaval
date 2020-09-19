@@ -31,13 +31,11 @@ kotlin {
     }
 }
 
-tasks {
-    dokkaHtmlMultimodule {
-        outputDirectory = "$buildDir/multimodule"
-        documentationFileName = "README.md"
-    }
-
-}
+// FIXME dokka
+//tasks.dokkaHtmlMultiModule.configure {
+//    outputDirectory.set(buildDir.resolve("dokkaCustomMultiModuleOutput"))
+//    documentationFileName.set("README.md")
+//}
 
 
 allprojects {

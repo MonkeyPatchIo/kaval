@@ -1,12 +1,12 @@
 object Libs {
 
     object Plugins {
-        const val kotlinVersion = "1.4.0"
-        const val dokkaVersion = "1.4.0-rc"
+        const val kotlinVersion = "1.4.10"
+        const val dokkaVersion = "1.4.10"
         const val testLogger = "2.1.0"
-        const val kotlinter = "3.0.2"
+        const val kotlinter = "3.2.0"
         const val release = "2.8.1"
-        const val versions = "0.29.0"
+        const val versions = "0.33.0"
         const val orchid = "0.21.1"
     }
 
@@ -18,7 +18,7 @@ object Libs {
     }
 
     object Arrow {
-        private const val version = "0.10.5"
+        private const val version = "0.11.0"
         const val core = "io.arrow-kt:arrow-core:$version"
         const val syntax = "io.arrow-kt:arrow-syntax:$version"
         const val optics = "io.arrow-kt:arrow-optics:$version"
@@ -27,7 +27,7 @@ object Libs {
     }
 
     object Kotest {
-        private const val version = "4.2.2"
+        private const val version = "4.2.5"
         const val assertionsMpp = "io.kotest:kotest-assertions-core:$version"
         const val assertionsJvm = "io.kotest:kotest-assertions-core-jvm:$version"
         const val assertionsArrow = "io.kotest:kotest-assertions-arrow:$version"

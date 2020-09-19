@@ -6,3 +6,10 @@ include("kaval-arrow")
 include("kaval-coroutine")
 include("samples")
 include("documentation")
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+    }
+}
