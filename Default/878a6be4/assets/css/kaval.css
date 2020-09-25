@@ -1,0 +1,466 @@
+:root {
+  --blue: #00b0f0;
+  --darkest: #000;
+  --dark: #222;
+  --middle: #666;
+  --ligh: whitesmoke;
+  --lighest: #fff;
+  --darker-1: rgba(0, 0, 0, .5);
+  --darker-2: rgba(0, 0, 0, .25);
+  --darker-3: rgba(0, 0, 0, .125);
+  --lighter-1: hsla(0, 100%, 100%, .5);
+  --lighter-2: hsla(0, 100%, 100%, .25);
+  --lighter-3: hsla(0, 100%, 100%, .125);
+  --primary: var(--blue);
+  --primaryText: var(--ligh);
+  --secondary: #9b26af;
+  --secondaryLight: rgba(155, 38, 175, 0.25);
+  --secondaryText: var(--ligh);
+  --secondaryTextHover: var(--lighest);
+  --system-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-mono: "Jetbrains Mono", "Fira Code", Menlo, Monaco, "DejaVu Sans Mono", monospace; }
+
+* {
+  box-sizing: inherit; }
+
+html {
+  background: var(--primary);
+  font-size: 16px; }
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: var(--system-font);
+  background: var(--ligh);
+  color: var(--dark); }
+
+a {
+  color: inherit;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+
+.flex-spacer {
+  flex-grow: 1; }
+
+body > header {
+  grid-area: head;
+  padding: 1em .5em;
+  background: var(--primary);
+  color: var(--primaryText); }
+  body > header a:hover {
+    color: var(--primaryTextHover); }
+
+body > header > .logo {
+  margin: 2em; }
+  body > header > .logo figure {
+    margin: 0;
+    display: flex;
+    max-width: 10rem;
+    align-items: center;
+    flex-wrap: wrap; }
+    body > header > .logo figure img {
+      width: 100%;
+      filter: drop-shadow(0.125em 0.125em 0.5em black); }
+    body > header > .logo figure figcaption {
+      font-size: 2.5em;
+      text-shadow: 1px 0 black; }
+
+body > header > nav > div {
+  padding: .25em;
+  border-radius: .125em; }
+  body > header > nav > div + div {
+    margin-top: .25em; }
+
+body > header > nav .separator {
+  background: var(--darker-2); }
+
+body > header > nav a {
+  padding-left: 1em; }
+
+body > header > .version {
+  text-align: center; }
+  body > header > .version a {
+    text-shadow: 1px 0 black; }
+
+body > main {
+  grid-area: body;
+  padding: 1em;
+  overflow: auto; }
+
+body > footer {
+  grid-area: foot;
+  padding: .5em;
+  background: var(--dark);
+  color: var(--middle);
+  display: flex;
+  align-items: center; }
+  body > footer a {
+    text-shadow: 1px 0 var(--darkest); }
+  body > footer .orchid {
+    display: flex;
+    align-items: center; }
+    body > footer .orchid img {
+      margin-left: .5em;
+      max-height: 2em; }
+
+body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: "head body" "foot foot"; }
+  body > header {
+    display: flex;
+    flex-direction: column; }
+
+body > main > .content, .component-changelog {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.5;
+  color: #24292e;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 16px;
+  word-wrap: break-word; }
+  body > main > .content details, .component-changelog details {
+    display: block; }
+  body > main > .content summary, .component-changelog summary {
+    display: list-item; }
+  body > main > .content a, .component-changelog a {
+    background-color: initial; }
+  body > main > .content a:active,
+  body > main > .content a:hover, .component-changelog a:active,
+  .component-changelog a:hover {
+    outline-width: 0; }
+  body > main > .content strong, .component-changelog strong {
+    font-weight: inherit;
+    font-weight: bolder; }
+  body > main > .content h1, .component-changelog h1 {
+    font-size: 2em;
+    margin: .67em 0; }
+  body > main > .content img, .component-changelog img {
+    border-style: none; }
+  body > main > .content code,
+  body > main > .content kbd, .component-changelog code,
+  .component-changelog kbd {
+    font-family: monospace, monospace;
+    font-size: 1em; }
+  body > main > .content hr, .component-changelog hr {
+    box-sizing: initial;
+    height: 0;
+    overflow: visible; }
+  body > main > .content input, .component-changelog input {
+    font: inherit;
+    margin: 0; }
+  body > main > .content input, .component-changelog input {
+    overflow: visible; }
+  body > main > .content [type=checkbox], .component-changelog [type=checkbox] {
+    box-sizing: border-box;
+    padding: 0; }
+  body > main > .content *, .component-changelog * {
+    box-sizing: border-box; }
+  body > main > .content input, .component-changelog input {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit; }
+  body > main > .content a, .component-changelog a {
+    color: var(--primary);
+    text-decoration: none; }
+  body > main > .content a:hover, .component-changelog a:hover {
+    text-decoration: underline; }
+  body > main > .content strong, .component-changelog strong {
+    font-weight: 600; }
+  body > main > .content hr, .component-changelog hr {
+    height: 0;
+    margin: 15px 0;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #dfe2e5; }
+  body > main > .content hr:after,
+  body > main > .content hr:before, .component-changelog hr:after,
+  .component-changelog hr:before {
+    display: table;
+    content: ""; }
+  body > main > .content hr:after, .component-changelog hr:after {
+    clear: both; }
+  body > main > .content table, .component-changelog table {
+    border-spacing: 0;
+    border-collapse: collapse; }
+  body > main > .content td,
+  body > main > .content th, .component-changelog td,
+  .component-changelog th {
+    padding: 0; }
+  body > main > .content details summary, .component-changelog details summary {
+    cursor: pointer; }
+  body > main > .content h1,
+  body > main > .content h2,
+  body > main > .content h3,
+  body > main > .content h4,
+  body > main > .content h5,
+  body > main > .content h6, .component-changelog h1,
+  .component-changelog h2,
+  .component-changelog h3,
+  .component-changelog h4,
+  .component-changelog h5,
+  .component-changelog h6 {
+    margin-top: 0;
+    margin-bottom: 0; }
+  body > main > .content h1, .component-changelog h1 {
+    font-size: 32px; }
+  body > main > .content h1,
+  body > main > .content h2, .component-changelog h1,
+  .component-changelog h2 {
+    font-weight: 600; }
+  body > main > .content h2, .component-changelog h2 {
+    font-size: 24px; }
+  body > main > .content h3, .component-changelog h3 {
+    font-size: 20px; }
+  body > main > .content h3,
+  body > main > .content h4, .component-changelog h3,
+  .component-changelog h4 {
+    font-weight: 600; }
+  body > main > .content h4, .component-changelog h4 {
+    font-size: 16px; }
+  body > main > .content h5, .component-changelog h5 {
+    font-size: 14px; }
+  body > main > .content h5,
+  body > main > .content h6, .component-changelog h5,
+  .component-changelog h6 {
+    font-weight: 600; }
+  body > main > .content h6, .component-changelog h6 {
+    font-size: 12px; }
+  body > main > .content p, .component-changelog p {
+    margin-top: 0;
+    margin-bottom: 10px; }
+  body > main > .content blockquote, .component-changelog blockquote {
+    margin: 0; }
+  body > main > .content ol,
+  body > main > .content ul, .component-changelog ol,
+  .component-changelog ul {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0; }
+  body > main > .content ol ol,
+  body > main > .content ul ol, .component-changelog ol ol,
+  .component-changelog ul ol {
+    list-style-type: lower-roman; }
+  body > main > .content ol ol ol,
+  body > main > .content ol ul ol,
+  body > main > .content ul ol ol,
+  body > main > .content ul ul ol, .component-changelog ol ol ol,
+  .component-changelog ol ul ol,
+  .component-changelog ul ol ol,
+  .component-changelog ul ul ol {
+    list-style-type: lower-alpha; }
+  body > main > .content dd, .component-changelog dd {
+    margin-left: 0; }
+  body > main > .content code,
+  body > main > .content pre, .component-changelog code,
+  .component-changelog pre {
+    font-family: var(--font-mono);
+    font-size: 12px; }
+  body > main > .content pre, .component-changelog pre {
+    border-radius: .25em;
+    margin-top: 0;
+    margin-bottom: 0; }
+  body > main > .content input::-webkit-inner-spin-button,
+  body > main > .content input::-webkit-outer-spin-button, .component-changelog input::-webkit-inner-spin-button,
+  .component-changelog input::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none; }
+  body > main > .content :checked + .radio-label, .component-changelog :checked + .radio-label {
+    position: relative;
+    z-index: 1;
+    border-color: var(--primary); }
+  body > main > .content hr, .component-changelog hr {
+    border-bottom-color: #eee; }
+  body > main > .content kbd, .component-changelog kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    line-height: 10px;
+    color: #444d56;
+    vertical-align: middle;
+    background-color: #fafbfc;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #d1d5da; }
+  body > main > .content a:not([href]), .component-changelog a:not([href]) {
+    color: inherit;
+    text-decoration: none; }
+  body > main > .content blockquote,
+  body > main > .content details,
+  body > main > .content dl,
+  body > main > .content ol,
+  body > main > .content p,
+  body > main > .content pre,
+  body > main > .content table,
+  body > main > .content ul, .component-changelog blockquote,
+  .component-changelog details,
+  .component-changelog dl,
+  .component-changelog ol,
+  .component-changelog p,
+  .component-changelog pre,
+  .component-changelog table,
+  .component-changelog ul {
+    margin-top: 0;
+    margin-bottom: 16px; }
+  body > main > .content hr, .component-changelog hr {
+    height: .25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: #e1e4e8;
+    border: 0; }
+  body > main > .content blockquote, .component-changelog blockquote {
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: .25em solid #dfe2e5; }
+  body > main > .content blockquote > :first-child, .component-changelog blockquote > :first-child {
+    margin-top: 0; }
+  body > main > .content blockquote > :last-child, .component-changelog blockquote > :last-child {
+    margin-bottom: 0; }
+  body > main > .content h1,
+  body > main > .content h2,
+  body > main > .content h3,
+  body > main > .content h4,
+  body > main > .content h5,
+  body > main > .content h6, .component-changelog h1,
+  .component-changelog h2,
+  .component-changelog h3,
+  .component-changelog h4,
+  .component-changelog h5,
+  .component-changelog h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25; }
+  body > main > .content h1, .component-changelog h1 {
+    font-size: 2em; }
+  body > main > .content h1,
+  body > main > .content h2, .component-changelog h1,
+  .component-changelog h2 {
+    padding-bottom: .3em;
+    border-bottom: 1px solid #eaecef; }
+  body > main > .content h2, .component-changelog h2 {
+    font-size: 1.5em; }
+  body > main > .content h3, .component-changelog h3 {
+    font-size: 1.25em; }
+  body > main > .content h4, .component-changelog h4 {
+    font-size: 1em; }
+  body > main > .content h5, .component-changelog h5 {
+    font-size: .875em; }
+  body > main > .content h6, .component-changelog h6 {
+    font-size: .85em;
+    color: #6a737d; }
+  body > main > .content ol,
+  body > main > .content ul, .component-changelog ol,
+  .component-changelog ul {
+    padding-left: 2em; }
+  body > main > .content ol ol,
+  body > main > .content ol ul,
+  body > main > .content ul ol,
+  body > main > .content ul ul, .component-changelog ol ol,
+  .component-changelog ol ul,
+  .component-changelog ul ol,
+  .component-changelog ul ul {
+    margin-top: 0;
+    margin-bottom: 0; }
+  body > main > .content li, .component-changelog li {
+    word-wrap: break-all; }
+  body > main > .content li > p, .component-changelog li > p {
+    margin-top: 16px; }
+  body > main > .content li + li, .component-changelog li + li {
+    margin-top: .25em; }
+  body > main > .content dl, .component-changelog dl {
+    padding: 0; }
+  body > main > .content dl dt, .component-changelog dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 600; }
+  body > main > .content dl dd, .component-changelog dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px; }
+  body > main > .content table, .component-changelog table {
+    display: block;
+    width: 100%;
+    overflow: auto; }
+  body > main > .content table th, .component-changelog table th {
+    font-weight: 600; }
+  body > main > .content table td,
+  body > main > .content table th, .component-changelog table td,
+  .component-changelog table th {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5; }
+  body > main > .content table tr, .component-changelog table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1; }
+  body > main > .content table tr:nth-child(2n), .component-changelog table tr:nth-child(2n) {
+    background-color: #f6f8fa; }
+  body > main > .content img, .component-changelog img {
+    max-width: 100%;
+    box-sizing: initial;
+    background-color: #fff; }
+  body > main > .content img[align=right], .component-changelog img[align=right] {
+    padding-left: 20px; }
+  body > main > .content img[align=left], .component-changelog img[align=left] {
+    padding-right: 20px; }
+  body > main > .content pre > code, .component-changelog pre > code {
+    font-size: 1.125em; }
+  body > main > .content p code, body > main > .content table code, body > main > .content li code, body > main > .content h3 code, .component-changelog p code, .component-changelog table code, .component-changelog li code, .component-changelog h3 code {
+    background-color: var(--lighter-2);
+    color: var(--secondary);
+    font-size: .875em;
+    padding: .2em 0.25em .2em;
+    border: thin solid var(--secondaryLight);
+    border-radius: .25em; }
+
+body > main .content .component-changelog h1 {
+  font-size: 32px; }
+
+body > main .content .component-changelog h1,
+body > main .content .component-changelog h2 {
+  font-weight: 600; }
+
+body > main .content .component-changelog h2 {
+  font-size: 24px; }
+
+body > main .content .component-changelog h3 {
+  font-size: 20px; }
+
+body > main .content .component-changelog h3,
+body > main .content .component-changelog h4 {
+  font-weight: 600; }
+
+body > main .content .component-changelog h4 {
+  font-size: 16px; }
+
+body > main .content .component-changelog h5 {
+  font-size: 14px; }
+
+body > main .content .component-changelog h5,
+body > main .content .component-changelog h6 {
+  font-weight: 600; }
+
+body > main .content .component-changelog h6 {
+  font-size: 12px; }
+
+body > main .content .component-changelog details {
+  margin: .5em 0;
+  padding: .25em;
+  border: thin solid var(--darker-2);
+  border-radius: .25em;
+  background: var(--lighter-1); }
+  body > main .content .component-changelog details[open] {
+    box-shadow: 0.125em 0.125em 0.25em var(--darker-2); }
+
+body > main .content .component-changelog summary {
+  padding-left: .25em;
+  font-size: 1.75em;
+  color: var(--primary);
+  font-family: var(--font-mono); }

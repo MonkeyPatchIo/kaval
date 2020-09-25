@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+
+
+
+
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<meta name="generator" content="Orchid 0.21.1"/>
+<link rel="icon" href="https://monkeypatch.io/kaval/favicon.ico">
+
+
+<meta name="robots" content="index, follow">
+
+
+
+<title>Kaval</title>
+
+
+<meta name="description" content="Kaval is a validation DSL for your POJO.">
+
+
+
+
+
+<!-- start:inject styles -->
+<link rel="stylesheet" type="text/css" href="https://monkeypatch.io/kaval/Default/878a6be4/assets/css/kaval.css"  />
+<link rel="stylesheet" type="text/css" href="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"  />
+<!-- end:inject styles -->
+
+
+
+<script>
+    window.site = {"orchidVersion":"0.21.1","baseUrl":"https://monkeypatch.io/kaval","environment":"prod","version":"0.6.0-SNAPSHOT"};
+</script>
+
+
+    <!-- start:inject meta-components [head] -->
+    
+
+        
+            
+        
+
+        
+            
+        
+    
+    <!-- end:inject meta-components [head] -->
+
+
+
+    <!-- start:inject meta-components [head] -->
+    
+
+        
+            
+        
+
+        
+            
+        
+    
+    <!-- end:inject meta-components [head] -->
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+</head>
+
+<body>
+<header>
+
+  <div class="logo">
+    <a href="/">
+      <figure class="image">
+        <img src="https://monkeypatch.io/kaval/assets/logo/kaval.svg" alt="Kaval logo">
+        <figcaption>Kaval</figcaption>
+      </figure>
+    </a>
+  </div>
+
+  <nav class="menu">
+  
+    <div class="separator">
+      
+        Getting Started
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/samples">
+          
+            <i class="fas fa-code"></i>
+          
+          Samples
+        </a>
+      
+    </div>
+  
+    <div class="separator">
+      
+        Modules
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-core">
+          
+            <i class="fas fa-atom"></i>
+          
+          Kaval Core
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-arrow">
+          
+            <i class="fas fa-location-arrow"></i>
+          
+          Kaval Arrow
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-coroutine">
+          
+            <i class="fas fa-random"></i>
+          
+          Kaval Coroutine
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-kotest">
+          
+            <i class="fas fa-vial"></i>
+          
+          Kaval Kotest
+        </a>
+      
+    </div>
+  
+    <div class="separator">
+      
+        Open Source
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/license">
+          
+            <i class="fas fa-file-contract"></i>
+          
+          License
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/changelog">
+          
+            <i class="fas fa-history"></i>
+          
+          Changelog
+        </a>
+      
+    </div>
+  
+    <div class="link">
+      
+        <a href="https://github.com/MonkeyPatchIo/kaval">
+          
+            <i class="fab fa-github"></i>
+          
+          Github
+        </a>
+      
+    </div>
+  
+  </nav>
+
+  <div class="flex-spacer"></div>
+
+  <div class="version">
+    Last version <a href="https://monkeypatch.io/kaval/changelog">0.6.0-SNAPSHOT</a>
+  </div>
+
+</header>
+
+<main>
+    <div class="content">
+        
+    <!-- start:inject components -->
+    
+        
+            
+                
+                    
+                        <h1 id="kaval"><a href="#kaval" id="kaval" class="anchor"></a>Kaval</h1>
+<p>This is a Kotlin multiplatform library to validate your model.</p>
+<h2 id="why"><a href="#why" id="why" class="anchor"></a>Why</h2>
+<p>The goal is to find the right balance between conciseness, expressiveness, and composability to validate POJO.</p>
+<p>Or you can see it as a validation DSL.</p>
+<h2 id="example"><a href="#example" id="example" class="anchor"></a>Example</h2>
+<p>We want to validate this model</p>
+<pre><code class="language-kotlin">data class User(
+    val firstName: String,
+    val lastName: String,
+    val address: Address?
+)
+
+data class Address(
+    val line1: String,
+    val line2: String,
+    val zipCode: Int,
+    val city: String
+)
+</code></pre>
+<p>We can validate the <code>Address</code> with these constraints:</p>
+<ul>
+<li>line1: not blank, and length &lt;= 255</li>
+<li>line2: length &lt;= 255</li>
+<li>zipCode: &gt; 0</li>
+<li>city: not blank</li>
+</ul>
+<pre><code class="language-kotlin">val addressValidator: Validator&lt;Address&gt; =
+    reflectValidator {
+        Address::line1 { notBlank and maxLength(255) }
+        Address::line2 { maxLength(255) }
+        Address::zipCode { greaterThan(0) }
+        Address::city { notBlank }
+    }
+</code></pre>
+<p>And the <code>User</code> with these constraints:</p>
+<ul>
+<li>firstName: not blank, and length &lt;= 128</li>
+<li>lastName: length &lt;= 255</li>
+<li>address: see above</li>
+</ul>
+<pre><code class="language-kotlin">val userValidator: Validator&lt;User&gt; =
+    reflectValidator {
+        User::firstName { notBlank and maxLength(128) }
+        User::lastName { notBlank and maxLength(255) }
+        User::address { nullOr { Address.validator } }
+    }
+</code></pre>
+<p>Now we can use the validators:</p>
+<pre><code class="language-kotlin">val user = User(
+   firstName = &quot;&quot;,
+   lastName = &quot;x&quot;.repeat(500),
+   address = Address(
+       line1 = &quot;&quot;,
+       line2 = &quot;&quot;,
+       zipCode = -1,
+       city = &quot;&quot;
+   )
+)
+
+val result: ValidationResult&lt;User&gt; = userValidator.validate(user)
+println(result)
+// Invalid:
+//  - [firstName] requires to be not blank
+//  - [lastName.length] requires to be lower or equals to 255, got 500
+//  - [address.line1] requires to be not blank
+//  - [address.zipCode] requires to be greater than 0, got -1
+//  - [address.city] requires to be not blank should be Valid
+</code></pre>
+<h2 id="modules"><a href="#modules" id="modules" class="anchor"></a>Modules</h2>
+<ul>
+<li><a href="./kaval-core">kaval-core</a>: the core, start here</li>
+<li><a href="./kaval-kotest">kaval-kotest</a>: add custom matchers for <a href="https://github.com/kotest/kotest">kotest</a></li>
+<li><a href="./kaval-arrow">kaval-arrow</a>: integration with <a href="https://arrow-kt.io">Arrow</a></li>
+<li><a href="./kaval-coroutine">kaval-coroutine</a>: validation with <code>suspend</code> function</li>
+</ul>
+
+                    
+                
+            
+        
+    
+    <!-- end:inject components -->
+
+
+    </div>
+</main>
+<footer>
+
+  <div class="orchid">
+    Build with <a href="https://orchid.run"><img alt="Orchid" src="https://monkeypatch.io/kaval/assets/logo/orchid.svg"></a>
+  </div>
+  <div class="flex-spacer"></div>
+  <div class="love">We ❤️ Chocolatines</div>
+
+</footer>
+
+<!-- start:inject scripts -->
+<script data-selector="pre code[class='language-run-kotlin']" src="https://monkeypatch.io/kaval/kotlin-playground@1"></script>
+<script  src="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/prism.min.js"></script>
+<script  src="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/components/prism-clike.min.js"></script>
+<script  src="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/components/prism-kotlin.min.js"></script>
+<!-- end:inject scripts -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+  "ownKey": "home",
+  "ownPages": [
+    {
+      "reference": {
+        "path": "",
+        "baseUrl": "https://monkeypatch.io/kaval",
+        "fileName": "",
+        "extension": "html",
+        "usePrettyUrl": true,
+        "link": "https://monkeypatch.io/kaval"
+      },
+      "description": "",
+      "title": "Kaval",
+      "content": "<h1 id=\"kaval\"><a href=\"#kaval\" id=\"kaval\" class=\"anchor\"><\/a>Kaval<\/h1>\n<p>This is a Kotlin multiplatform library to validate your model.<\/p>\n<h2 id=\"why\"><a href=\"#why\" id=\"why\" class=\"anchor\"><\/a>Why<\/h2>\n<p>The goal is to find the right balance between conciseness, expressiveness, and composability to validate POJO.<\/p>\n<p>Or you can see it as a validation DSL.<\/p>\n<h2 id=\"example\"><a href=\"#example\" id=\"example\" class=\"anchor\"><\/a>Example<\/h2>\n<p>We want to validate this model<\/p>\n<pre><code class=\"language-kotlin\">data class User(\n    val firstName: String,\n    val lastName: String,\n    val address: Address?\n)\n\ndata class Address(\n    val line1: String,\n    val line2: String,\n    val zipCode: Int,\n    val city: String\n)\n<\/code><\/pre>\n<p>We can validate the <code>Address<\/code> with these constraints:<\/p>\n<ul>\n<li>line1: not blank, and length &lt;= 255<\/li>\n<li>line2: length &lt;= 255<\/li>\n<li>zipCode: &gt; 0<\/li>\n<li>city: not blank<\/li>\n<\/ul>\n<pre><code class=\"language-kotlin\">val addressValidator: Validator&lt;Address&gt; =\n    reflectValidator {\n        Address::line1 { notBlank and maxLength(255) }\n        Address::line2 { maxLength(255) }\n        Address::zipCode { greaterThan(0) }\n        Address::city { notBlank }\n    }\n<\/code><\/pre>\n<p>And the <code>User<\/code> with these constraints:<\/p>\n<ul>\n<li>firstName: not blank, and length &lt;= 128<\/li>\n<li>lastName: length &lt;= 255<\/li>\n<li>address: see above<\/li>\n<\/ul>\n<pre><code class=\"language-kotlin\">val userValidator: Validator&lt;User&gt; =\n    reflectValidator {\n        User::firstName { notBlank and maxLength(128) }\n        User::lastName { notBlank and maxLength(255) }\n        User::address { nullOr { Address.validator } }\n    }\n<\/code><\/pre>\n<p>Now we can use the validators:<\/p>\n<pre><code class=\"language-kotlin\">val user = User(\n   firstName = &quot;&quot;,\n   lastName = &quot;x&quot;.repeat(500),\n   address = Address(\n       line1 = &quot;&quot;,\n       line2 = &quot;&quot;,\n       zipCode = -1,\n       city = &quot;&quot;\n   )\n)\n\nval result: ValidationResult&lt;User&gt; = userValidator.validate(user)\nprintln(result)\n// Invalid:\n//  - [firstName] requires to be not blank\n//  - [lastName.length] requires to be lower or equals to 255, got 500\n//  - [address.line1] requires to be not blank\n//  - [address.zipCode] requires to be greater than 0, got -1\n//  - [address.city] requires to be not blank should be Valid\n<\/code><\/pre>\n<h2 id=\"modules\"><a href=\"#modules\" id=\"modules\" class=\"anchor\"><\/a>Modules<\/h2>\n<ul>\n<li><a href=\"./kaval-core\">kaval-core<\/a>: the core, start here<\/li>\n<li><a href=\"./kaval-kotest\">kaval-kotest<\/a>: add custom matchers for <a href=\"https://github.com/kotest/kotest\">kotest<\/a><\/li>\n<li><a href=\"./kaval-arrow\">kaval-arrow<\/a>: integration with <a href=\"https://arrow-kt.io\">Arrow<\/a><\/li>\n<li><a href=\"./kaval-coroutine\">kaval-coroutine<\/a>: validation with <code>suspend<\/code> function<\/li>\n<\/ul>\n"
+    },
+    {
+      "reference": {
+        "path": "",
+        "baseUrl": "https://monkeypatch.io/kaval",
+        "fileName": "404",
+        "extension": "html",
+        "usePrettyUrl": false,
+        "link": "https://monkeypatch.io/kaval/404.html"
+      },
+      "description": "",
+      "title": "Not Found",
+      "content": ""
+    }
+  ]
+}

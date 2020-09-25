@@ -1,0 +1,116 @@
+{
+  "ownKey": "index",
+  "childrenPages": {"meta": {
+    "ownKey": "meta",
+    "ownPages": [
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "assets.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/assets.index.json"
+        },
+        "description": "",
+        "title": "Assets . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "changelog.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/changelog.index.json"
+        },
+        "description": "",
+        "title": "Changelog . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "forms.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/forms.index.json"
+        },
+        "description": "",
+        "title": "Forms . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "home.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/home.index.json"
+        },
+        "description": "",
+        "title": "Home . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "pages.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/pages.index.json"
+        },
+        "description": "",
+        "title": "Pages . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "wiki.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/wiki.index.json"
+        },
+        "description": "",
+        "title": "Wiki . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "sitemap.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/sitemap.index.json"
+        },
+        "description": "",
+        "title": "Sitemap . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "indices.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/indices.index.json"
+        },
+        "description": "",
+        "title": "Indices . Index"
+      },
+      {
+        "reference": {
+          "path": "meta",
+          "baseUrl": "https://monkeypatch.io/kaval",
+          "fileName": "all.index",
+          "extension": "json",
+          "usePrettyUrl": false,
+          "link": "https://monkeypatch.io/kaval/meta/all.index.json"
+        },
+        "description": "",
+        "title": "All . Index"
+      }
+    ]
+  }}
+}

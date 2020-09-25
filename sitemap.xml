@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd"
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-assets.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-external.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-changelog.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-forms.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-home.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-pages.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-wiki.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-sitemap.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+    <sitemap>
+        <loc>https://monkeypatch.io/kaval/sitemap-indices.xml</loc>
+        <lastmod>2020-09-25</lastmod>
+    </sitemap>
+</sitemapindex>

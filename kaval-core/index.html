@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+
+
+
+
+<meta charset="utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+<meta name="generator" content="Orchid 0.21.1"/>
+<link rel="icon" href="https://monkeypatch.io/kaval/favicon.ico">
+
+
+<meta name="robots" content="index, follow">
+
+
+
+<title>Kaval Core</title>
+
+
+<meta name="description" content="Kaval is a validation DSL for your POJO.">
+
+
+
+
+
+<!-- start:inject styles -->
+<link rel="stylesheet" type="text/css" href="https://monkeypatch.io/kaval/Default/878a6be4/assets/css/kaval.css"  />
+<link rel="stylesheet" type="text/css" href="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/themes/prism-tomorrow.min.css"  />
+<!-- end:inject styles -->
+
+
+
+<script>
+    window.site = {"orchidVersion":"0.21.1","baseUrl":"https://monkeypatch.io/kaval","environment":"prod","version":"0.6.0-SNAPSHOT"};
+</script>
+
+
+    <!-- start:inject meta-components [head] -->
+    
+
+        
+            
+        
+
+        
+            
+        
+    
+    <!-- end:inject meta-components [head] -->
+
+
+
+    <!-- start:inject meta-components [head] -->
+    
+
+        
+            
+        
+
+        
+            
+        
+    
+    <!-- end:inject meta-components [head] -->
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+</head>
+
+<body>
+<header>
+
+  <div class="logo">
+    <a href="/">
+      <figure class="image">
+        <img src="https://monkeypatch.io/kaval/assets/logo/kaval.svg" alt="Kaval logo">
+        <figcaption>Kaval</figcaption>
+      </figure>
+    </a>
+  </div>
+
+  <nav class="menu">
+  
+    <div class="separator">
+      
+        Getting Started
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/samples">
+          
+            <i class="fas fa-code"></i>
+          
+          Samples
+        </a>
+      
+    </div>
+  
+    <div class="separator">
+      
+        Modules
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-core">
+          
+            <i class="fas fa-atom"></i>
+          
+          Kaval Core
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-arrow">
+          
+            <i class="fas fa-location-arrow"></i>
+          
+          Kaval Arrow
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-coroutine">
+          
+            <i class="fas fa-random"></i>
+          
+          Kaval Coroutine
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/kaval-kotest">
+          
+            <i class="fas fa-vial"></i>
+          
+          Kaval Kotest
+        </a>
+      
+    </div>
+  
+    <div class="separator">
+      
+        Open Source
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/license">
+          
+            <i class="fas fa-file-contract"></i>
+          
+          License
+        </a>
+      
+    </div>
+  
+    <div class="page">
+      
+        <a href="https://monkeypatch.io/kaval/changelog">
+          
+            <i class="fas fa-history"></i>
+          
+          Changelog
+        </a>
+      
+    </div>
+  
+    <div class="link">
+      
+        <a href="https://github.com/MonkeyPatchIo/kaval">
+          
+            <i class="fab fa-github"></i>
+          
+          Github
+        </a>
+      
+    </div>
+  
+  </nav>
+
+  <div class="flex-spacer"></div>
+
+  <div class="version">
+    Last version <a href="https://monkeypatch.io/kaval/changelog">0.6.0-SNAPSHOT</a>
+  </div>
+
+</header>
+
+<main>
+    <div class="content">
+        
+    <!-- start:inject components -->
+    
+        
+            
+                
+                    
+                        <h1 id="kaval-core"><a href="#kaval-core" id="kaval-core" class="anchor"></a>Kaval Core</h1>
+<p>This is the base of Kaval, here there are definition or commons types like <code>Validator</code>, <code>ValidationResult</code>,
+and some commons predefine validators.</p>
+<h2 id="whats-a-validator"><a href="#whats-a-validator" id="whats-a-validator" class="anchor"></a>What's a Validator</h2>
+<p>A <code>Validator</code> is function that take a value, and return a <code>ValidatorResult</code>.
+The <code>ValidatorResult</code> could be a <code>Valid</code>, or a <code>Invalid</code> object.
+An the <code>Invalid</code> case gather all validation issues.</p>
+<p>A <code>ValidationIssue</code> always contains a descriptive <code>message</code>, and could contain a <code>field</code> associated with the issue.</p>
+<h2 id="validator-usages"><a href="#validator-usages" id="validator-usages" class="anchor"></a>Validator usages</h2>
+<p>Imagine we want to validate an integer with an ultimate validator:</p>
+<pre><code class="language-kotlin">val ultimateValidator: Validator&lt;Int&gt; = TODO(&quot;See below for creating custom validators&quot;)
+</code></pre>
+<p>Now we can play with some numbers:</p>
+<pre><code class="language-kotlin">println(ultimateValidator.validate(42))
+// Valid
+
+println(ultimateValidator.validate(5))
+// Invalid: not the Answer to the Ultimate Question of Life, the Universe, and Everything
+</code></pre>
+<p>You also can some extension functions:</p>
+<pre><code class="language-kotlin">42.isValid(ultimateValidator) // true
+14.isValid(ultimateValidator) // false
+
+42.isValidOrThrow(ultimateValidator) // 42
+24.isValidOrThrow(ultimateValidator) // throw an InvalidException
+</code></pre>
+<p>If you want to chain the validation you can do something like that:</p>
+<pre><code class="language-kotlin">val isDigit: Validator&lt;String&gt; = Strings.matches(Regex(&quot;^[0-9]$&quot;))
+
+fun parseInt(str: String): Int =
+    str.isValidOrThrow(isDigit).toInt()
+
+parseInt(&quot;3&quot;) // 3: Int
+
+parseInt(&quot;foo&quot;) // throw an InvalidException
+</code></pre>
+<p>You can find more samples <a href="../samples/src/main/kotlin">here</a></p>
+<h2 id="combine-validators"><a href="#combine-validators" id="combine-validators" class="anchor"></a>Combine Validators</h2>
+<p>Validators can be combined with <code>and</code>, <code>andThen</code>, <code>or</code></p>
+<ul>
+<li><code>and</code>: run both validators and gather all issues</li>
+<li><code>andThen</code>: run the first validator, if valid, try the second one. This is a <em>fail fast</em> solution to stop after first issue.</li>
+<li><code>or</code>: run the first validator, if invalid try the second one.</li>
+</ul>
+<p>Let's try it with two validators:</p>
+<pre><code class="language-kotlin">val v1 = Strings.maxLength(3)
+val v2 = Strings.matches(Regex(&quot;^[a-z]*$&quot;))
+</code></pre>
+<p>And validate some inputs:</p>
+<table>
+<thead>
+<tr><th>input</th><th><code>v1 and v2</code></th><th><code>v1 andThen v2</code></th><th><code>v1 or v2</code></th></tr>
+</thead>
+<tbody>
+<tr><td><code>&quot;&quot;</code></td><td>Valid</td><td>Valid</td><td>Valid</td></tr>
+<tr><td><code>&quot;abc&quot;</code></td><td>Valid</td><td>Valid</td><td>Valid</td></tr>
+<tr><td><code>&quot;A&quot;</code></td><td>Invalid: requires matching '^[a-z]*$'</td><td>Invalid: requires matching '^[a-z]*$'</td><td>Valid</td></tr>
+<tr><td><code>&quot;Abcef&quot;</code></td><td>Invalid:<br> - [length] requires to be lower or equals to 3, got 5<br> - requires matching '^[a-z]*$'</td><td>Invalid: [length] requires to be lower or equals to 3, got 5</td><td>Invalid:<br> - [length] requires to be lower or equals to 3, got 5<br> - requires matching '^[a-z]*$'</td></tr>
+</tbody>
+</table>
+<h2 id="provided-validators"><a href="#provided-validators" id="provided-validators" class="anchor"></a>Provided validators</h2>
+<h3 id="commons"><a href="#commons" id="commons" class="anchor"></a>Commons</h3>
+<p>Into the package <code>io.monkeypatch.kaval.core</code></p>
+<ul>
+<li><code>alwaysValid</code>: an always valid validator, could be useful in test, or when folding a list of validators.</li>
+<li><code>alwaysInvalid(reason: String)</code>: an always invalid validator, could be useful in test, or when folding a list of Validators.</li>
+<li><code>predicate(predicate: (T) -&gt; Boolean, reason: (T) -&gt; String)</code>: build a validator based on a predicate. Useful to create your own validator.</li>
+<li><code>notNull()</code>: valid when element is not null.</li>
+<li><code>containsBy(iter: Iterable&lt;T&gt;)</code>: valid when element is into the iterable</li>
+<li><code>notContainsBy(iter: Iterable&lt;T&gt;)</code>: valid when element is not into the iterable</li>
+<li><code>nullOr(validator: () -&gt; Validator&lt;T&gt;)</code>: valid if the element is null or if it's valid for the provided sub-validator.</li>
+<li><code>field(fieldName: String, fieldExtractor: (H) -&gt; C, fieldValidator: () -&gt; Validator&lt;C&gt;)</code>: validate a field of an element.
+Note that there is a <code>property</code> validator define into the <code>kaval-reflect</code> module.</li>
+<li><code>isInstance&lt;T&gt;()</code>: validate when element is an instance of a specific type.</li>
+<li><code>whenIsInstance(uValidator: () -&gt; Validator&lt;U&gt;)</code>: allow validation of the element when it's a specific instance.
+Useful to validate sealed class. See this <a href="../samples/src/main/kotlin/sealed.kt">sample</a></li>
+</ul>
+<h3 id="strings"><a href="#strings" id="strings" class="anchor"></a>Strings</h3>
+<p>Into the object <code>io.monkeypatch.kaval.core.validator.Strings</code></p>
+<ul>
+<li><code>notEmpty</code>: valid for a not empty char sequence.</li>
+<li><code>notBlank</code>: valid for a not blank char sequence.</li>
+<li><code>hasLength(length: Int)</code>: valid when the char sequence has a specific length.</li>
+<li><code>maxLength(length: Int)</code>: valid when the char sequence has a length lower or equals to a specific length.</li>
+<li><code>minLength(length: Int)</code>: valid when the char sequence has a length greater or equals to a specific length.</li>
+<li><code>matches(regex: Regex, message: String)</code>: valid when the char sequence match the regex. The message is optional.</li>
+</ul>
+<h3 id="comparables"><a href="#comparables" id="comparables" class="anchor"></a>Comparables</h3>
+<p>Into the object <code>io.monkeypatch.kaval.core.validator.Comparables</code></p>
+<ul>
+<li><code>greaterThan(value: T)</code>, <code>greaterThan(value: T, comparator: Comparator&lt;T&gt;)</code>: valid for when <code>&gt;</code>, you can provide a <code>Comparator</code>.</li>
+<li><code>greaterOrEqualTo(value: T)</code>, <code>greaterOrEqualTo(value: T, comparator: Comparator&lt;T&gt;)</code>: valid for when <code>&gt;=</code>, you can provide a <code>Comparator</code>.</li>
+<li><code>lowerThan(value: T)</code>, <code>lowerThan(value: T, comparator: Comparator&lt;T&gt;)</code>: valid for when <code>&lt;</code>, you can provide a <code>Comparator</code>.</li>
+<li><code>lowerOrEqualTo(value: T)</code>, <code>lowerOrEqualTo(value: T, comparator: Comparator&lt;T&gt;)</code>: valid for when <code>&lt;=</code>, you can provide a <code>Comparator</code>.</li>
+<li><code>equalTo(value: T)</code>, <code>equalTo(value: T, comparator: Comparator&lt;T&gt;)</code>: valid for when <code>==</code>, you can provide a <code>Comparator</code>.</li>
+<li><code>inClosedRange(range: ClosedRange&lt;T&gt;)</code>: valid for when <code>in</code> the range.</li>
+</ul>
+<h3 id="numbers"><a href="#numbers" id="numbers" class="anchor"></a>Numbers</h3>
+<p>Numbers implements <code>Comparable</code>, so you can already use methods like <code>greaterThan</code>, <code>lowerOrEqualTo</code>, ...</p>
+<p>Into objects <code>io.monkeypatch.kaval.core.validator.{Ints, Longs, Floats, Doubles}</code></p>
+<ul>
+<li><code>inRange(range)</code>: valid for when <code>in</code> the range. The range type depend on the type of validator</li>
+<li><code>strictlyPositive</code>: valid when <code>&gt;</code> 0</li>
+<li><code>positive</code>: valid when <code>&gt;=</code> 0</li>
+<li><code>strictlyNegative</code>: valid when <code>&lt;</code> 0</li>
+<li><code>negative</code>: valid when <code>&lt;=</code> 0</li>
+</ul>
+<h3 id="collections"><a href="#collections" id="collections" class="anchor"></a>Collections</h3>
+<p>Into the object <code>io.monkeypatch.kaval.core.validator.Collections</code></p>
+<ul>
+<li><code>empty()</code>: valid if empty</li>
+<li><code>notEmpty()</code>: valid if not empty</li>
+<li><code>hasSize(size: Int)</code>: valid when size has a specific value</li>
+<li><code>maxSize(size: Int)</code>: valid when size is lower or equals to a specific value</li>
+<li><code>minSize(size: Int)</code>: valid when size is lower or equals to a specific value</li>
+<li><code>allValid(elementValidator: () -&gt; Validator&lt;T&gt;)</code>: validate an <code>Iterable&lt;T&gt;</code> when all elements are valid. Valid when empty.</li>
+<li><code>atLeastOneValid(elementValidator: () -&gt; Validator&lt;T&gt;)</code>: validate an <code>Iterable&lt;T&gt;</code> when at least one element is valid. Invalid if empty.</li>
+<li><code>allValuesValid(valueValidator: () -&gt; Validator&lt;V&gt;)</code>: validate a <code>Map&lt;K,V&gt;</code> when all values are valid. Valid when empty.</li>
+<li><code>allKeysValid(keyValidator: () -&gt; Validator&lt;K&gt;)</code>: validate a <code>Map&lt;K,V&gt;</code> when all keys are valid. Valid when empty.</li>
+<li><code>allEntriesValid(entryValidator: () -&gt; Validator&lt;Map.Entry&lt;K, V&gt;&gt;)</code>: validate a <code>Map&lt;K,V&gt;</code> when all entries are valid. Valid when empty.</li>
+<li><code>entryValidator(keyValidator: Validator&lt;K&gt;, valueValidator: Validator&lt;V&gt;)</code>: validate a <code>Map.Entry&lt;K,V&gt;</code> with a key and a value validator.</li>
+<li><code>atLeastOneValueValid(valueValidator: () -&gt; Validator&lt;V&gt;)</code>: validate a <code>Map&lt;K,V&gt;</code> when at least one value is valid. Invalid if empty.</li>
+<li><code>atLeastOneKeyValid(keyValidator: () -&gt; Validator&lt;K&gt;)</code>: validate a <code>Map&lt;K,V&gt;</code> when at least one key is valid. Invalid if empty.</li>
+<li><code>atLeastOneEntryValid(entryValidator: () -&gt; Validator&lt;Map.Entry&lt;K, V&gt;&gt;)</code>: validate a <code>Map&lt;K,V&gt;</code> when at least one entry is valid. Invalid if empty.</li>
+</ul>
+<h2 id="tuples"><a href="#tuples" id="tuples" class="anchor"></a>Tuples</h2>
+<ul>
+<li><code>pair(tValidator: Validator&lt;T&gt;, uValidator: Validator&lt;U&gt;)</code>: create a validator for a <code>Pair&lt;T, U&gt;</code></li>
+<li><code>triple(tValidator: Validator&lt;T&gt;, uValidator: Validator&lt;U&gt;, wValidator: Validator&lt;W&gt;)</code>: create a validator for a <code>Triple&lt;T, U, W&gt;</code></li>
+</ul>
+<h2 id="create-your-validator"><a href="#create-your-validator" id="create-your-validator" class="anchor"></a>Create your Validator</h2>
+<p>You can of course combine already existing validators.
+It's also quite easy to create your own validator, first we can use the <code>validator(block: (T) -&gt; ValidationResult)</code> function:</p>
+<pre><code class="language-kotlin">val ultimateValidator: Validator&lt;Int&gt; = validator { i: Int -&gt;
+    if (i == 42) Valid
+    else Invalid(&quot;not the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;)
+}
+</code></pre>
+<p>Another solution is to use the <code>predicate</code> validator:</p>
+<pre><code class="language-kotlin">val ultimateValidator: Validator&lt;Int&gt; =
+    predicate({it == 42}) { &quot;not the Answer to the Ultimate Question of Life, the Universe, and Everything&quot;}
+</code></pre>
+<h2 id="jvm-only-validators"><a href="#jvm-only-validators" id="jvm-only-validators" class="anchor"></a>JVM only validators</h2>
+<ul>
+<li>
+<p><code>property(property: KProperty&lt;C&gt;, childValidator: () -&gt; Validator&lt;C&gt;)</code>: validate a property,
+same as <code>field</code> validator but we does not need to provide the field name.</p>
+</li>
+<li>
+<p><code>reflectValidator</code> function create a validator based on properties</p>
+</li>
+</ul>
+<pre><code class="language-kotlin">// A simple POJO
+data class Address(
+    val line1: String,
+    val line2: String,
+    val zipCode: Int,
+    val city: String
+)
+
+// And the validator
+val validator: Validator&lt;Address&gt; =
+    reflectValidator {
+        Address::line1 { notBlank and maxLength(255) }
+        Address::line2 { maxLength(255) }
+        Address::zipCode { greaterThan(0) }
+        Address::city { notBlank }
+    }
+</code></pre>
+
+                    
+                
+            
+        
+    
+    <!-- end:inject components -->
+
+
+    </div>
+</main>
+<footer>
+
+  <div class="orchid">
+    Build with <a href="https://orchid.run"><img alt="Orchid" src="https://monkeypatch.io/kaval/assets/logo/orchid.svg"></a>
+  </div>
+  <div class="flex-spacer"></div>
+  <div class="love">We ❤️ Chocolatines</div>
+
+</footer>
+
+<!-- start:inject scripts -->
+<script data-selector="pre code[class='language-run-kotlin']" src="https://monkeypatch.io/kaval/kotlin-playground@1"></script>
+<script  src="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/prism.min.js"></script>
+<script  src="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/components/prism-clike.min.js"></script>
+<script  src="https://monkeypatch.io/kaval/ajax/libs/prism/1.17.1/components/prism-kotlin.min.js"></script>
+<!-- end:inject scripts -->
+
+
+
+</body>
+
+</html>
